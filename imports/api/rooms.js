@@ -7,5 +7,9 @@ Meteor.methods({
     Rooms.insert({
       createdAt: Date.now()
     });
+  },
+
+  "rooms.delete"(id) {
+    Rooms.remove(id);
   }
 });
