@@ -1,18 +1,20 @@
-import React from "react";
-import { Meteor } from "meteor/meteor";
-import { Button } from "rebass";
-import { ThemeProvider } from "theme-ui";
-import theme from "../utils/theme";
-import RoomsList from "./RoomsList";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Room from "./Room";
+import { Button } from "rebass";
+import { Meteor } from "meteor/meteor";
+import { ThemeProvider } from "theme-ui";
+import Prototype from "./Prototype";
+import PrototypesList from "./PrototypesList";
+import React from "react";
+import theme from "../utils/theme";
 
 const App = props => (
   <ThemeProvider theme={theme}>
-    <Button onClick={() => Meteor.call("rooms.create")}>Create room</Button>
+    <Button onClick={() => Meteor.call("prototypes.create")}>
+      Create prototype
+    </Button>
     <Router>
-      <Route path="/:id" component={Room} />
-      <Route path="/" exact component={RoomsList} />
+      <Route path="/:id" component={Prototype} />
+      <Route path="/" exact component={PrototypesList} />
     </Router>
   </ThemeProvider>
 );
