@@ -1,10 +1,14 @@
 import React from "react";
-import { Flex, Text, Box, Link } from "rebass";
+import { Flex, Text, Box, Link, Button } from "rebass";
 import { withTracker } from "meteor/react-meteor-data";
 import { Prototypes } from "../api/prototypes";
+import { Meteor } from "meteor/meteor";
 
 const PrototypesList = props => (
   <Box>
+    <Button onClick={() => Meteor.call("prototypes.create")}>
+      Create prototype
+    </Button>
     {props.prototypes.length > 0 ? (
       props.prototypes.map(prototype => (
         <Flex key={prototype._id}>

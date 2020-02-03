@@ -9,9 +9,6 @@ import theme from "../utils/theme";
 
 const App = props => (
   <ThemeProvider theme={theme}>
-    <Button onClick={() => Meteor.call("prototypes.create")}>
-      Create prototype
-    </Button>
     <Router>
       <Route path="/:id" component={Prototype} />
       <Route path="/" exact component={PrototypesList} />
