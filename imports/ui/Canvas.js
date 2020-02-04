@@ -4,14 +4,16 @@ import React from "react";
 
 const Canvas = props => (
   <Scene>
-    <Entity
-      geometry={{ primitive: "box" }}
-      material={{ color: "red" }}
-      position={{ x: 0, y: 0, z: -5 }}
-    />
+    {props.scenes.length > 0 &&
+      props.scenes.map((scene, i) => (
+        <Entity
+          key={scene._id}
+          geometry={{ primitive: "box" }}
+          material={{ color: "black" }}
+          position={{ x: 0, y: 0, z: -5 * i - 5 }}
+        />
+      ))}
     <Entity light={{ type: "point" }} />
-    <Entity gltf-model={{ src: "virtualcity.gltf" }} />
-    <Entity text={{ value: "Hello, WebVR!" }} />
   </Scene>
 );
 

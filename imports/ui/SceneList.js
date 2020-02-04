@@ -1,7 +1,6 @@
 import React from "react";
-import { withTracker } from "meteor/react-meteor-data";
-import { Scenes } from "../api/scenes";
 import { Box, Text, Heading, Button } from "rebass";
+import { Meteor } from "meteor/meteor";
 
 const SceneList = props => (
   <Box>
@@ -21,8 +20,4 @@ const SceneList = props => (
   </Box>
 );
 
-export default withTracker(props => {
-  return {
-    scenes: Scenes.find({ parentId: props.parentId }).fetch()
-  };
-})(SceneList);
+export default SceneList;
