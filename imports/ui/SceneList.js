@@ -9,11 +9,20 @@ const SceneList = props => (
       New scene
     </Button>
     {props.scenes.length > 0 ? (
-      props.scenes.map(scene => (
-        <Box key={scene._id}>
-          <Text>{scene._id}</Text>
-        </Box>
-      ))
+      props.scenes.map(scene => {
+        const isSelected = props.selected === scene._id;
+        return (
+          <Box
+            key={scene._id}
+            bg={isSelected && "blue"}
+            color={isSelected && "white"}
+            onClick={props.onSelect.bind(null, scene._id)}
+            p={1}
+          >
+            <Text>{scene._id}</Text>
+          </Box>
+        );
+      })
     ) : (
       <Text>Loading</Text>
     )}
