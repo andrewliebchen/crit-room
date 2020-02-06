@@ -5,6 +5,7 @@ import { Scenes } from "../api/scenes";
 import { Flex, Box, Text, Heading } from "rebass";
 import SceneList from "./SceneList";
 import Canvas from "./Canvas";
+import PanelList from "./PanelList";
 
 const Prototype = props => {
   if (props.prototype) {
@@ -24,6 +25,9 @@ const Prototype = props => {
               selected={selectedScene}
               onSelect={id => setSelectedScene(id)}
             />
+          </Box>
+          <Box mb={3}>
+            <PanelList parentId={selectedScene} />
           </Box>
         </Box>
       </Flex>
