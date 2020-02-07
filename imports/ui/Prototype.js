@@ -6,14 +6,17 @@ import { Flex, Box, Text, Heading } from "rebass";
 import SceneList from "./SceneList";
 import Canvas from "./Canvas";
 import PanelList from "./PanelList";
+import PanelInspector from "./PanelInspector";
 
 const Prototype = props => {
   if (props.prototype) {
     const [selectedScene, setSelectedScene] = useState(props.scenes[0]._id);
+    const [selectedPanel, setSelectedPanel] = useState(null);
+
     return (
       <Flex>
         <Canvas scenes={props.scenes} />
-        <Box sx={{ position: "fixed", zIndex: 1 }}>
+        <Box p={3} m={3} sx={{ position: "fixed", zIndex: 1 }}>
           <Box mb={3}>
             <Heading>Prototype info</Heading>
             <Text>ID: {props.prototype._id}</Text>
@@ -27,8 +30,17 @@ const Prototype = props => {
             />
           </Box>
           <Box mb={3}>
-            <PanelList parentId={selectedScene} />
+            <PanelList
+              parentId={selectedScene}
+              selected={selectedPanel}
+              onSelect={id => setSelectedPanel(id)}
+            />
           </Box>
+          {selectedPanel && (
+            <Box mb={3}>
+              <PanelInspector />
+            </Box>
+          )}
         </Box>
       </Flex>
     );
