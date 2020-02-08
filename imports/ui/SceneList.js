@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, Text, Heading, Button } from "rebass";
 import { Meteor } from "meteor/meteor";
+import PropTypes from "prop-types";
 
 const SceneList = props => (
   <Box>
     <Heading>Scenes</Heading>
-    <Button onClick={() => Meteor.call("scenes.create", props.parentId)}>
+    <Button onClick={() => Meteor.call("scenes.create", props.prototypeId)}>
       New scene
     </Button>
     {props.scenes.length > 0 ? (
       props.scenes.map(scene => {
-        const isSelected = props.selected === scene._id;
+        const isSelected = props.selectedScene === scene._id;
         return (
           <Box
             key={scene._id}
@@ -28,5 +29,11 @@ const SceneList = props => (
     )}
   </Box>
 );
+
+SceneList.propTypes = {
+  scenes: PropTypes.array,
+  selectedScene: PropTypes.string,
+  onSelect: PropTypes.func
+};
 
 export default SceneList;

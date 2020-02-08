@@ -3,10 +3,11 @@ import { Mongo } from "meteor/mongo";
 export const Panels = new Mongo.Collection("panels");
 
 Meteor.methods({
-  "panels.create"(parentId) {
+  "panels.create"(prototypeId, sceneId) {
     Panels.insert({
       createdAt: Date.now(),
-      parentId: parentId
+      prototypeId: prototypeId,
+      sceneId: sceneId
     });
   },
 

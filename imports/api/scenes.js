@@ -3,10 +3,10 @@ import { Mongo } from "meteor/mongo";
 export const Scenes = new Mongo.Collection("scenes");
 
 Meteor.methods({
-  "scenes.create"(parentId) {
+  "scenes.create"(prototypeId) {
     Scenes.insert({
       createdAt: Date.now(),
-      parentId: parentId
+      prototypeId: prototypeId
     });
   },
 
