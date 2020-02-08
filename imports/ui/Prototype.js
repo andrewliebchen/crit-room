@@ -45,7 +45,9 @@ const Prototype = props => {
           </Box>
           {selectedPanel && (
             <Box mb={3}>
-              <PanelInspector />
+              <PanelInspector
+                panel={props.panels.find(panel => panel._id === selectedPanel)}
+              />
             </Box>
           )}
         </Box>

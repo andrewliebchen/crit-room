@@ -6,12 +6,17 @@ import PropTypes from "prop-types";
 const Canvas = props => (
   <Scene>
     {props.panels.length > 0 &&
-      props.panels.map((panel, i) => (
+      props.panels.map(panel => (
         <Entity
           key={panel._id}
-          geometry={{ primitive: "box" }}
+          geometry={{
+            primitive: "box",
+            depth: panel.depth,
+            height: panel.height,
+            width: panel.width
+          }}
           material={{ color: "black" }}
-          position={{ x: 0, y: 0, z: -5 * i - 5 }}
+          position={{ x: panel.x, y: panel.y, z: panel.z }}
         />
       ))}
     <Entity light={{ type: "point" }} />
