@@ -15,8 +15,13 @@ const Canvas = props => (
             height: panel.height,
             width: panel.width
           }}
-          material={{ color: "black" }}
+          material={{ color: "#333" }}
           position={{ x: panel.x, y: panel.y, z: panel.z }}
+          rotation={{
+            x: panel.xRotation,
+            y: panel.yRotation,
+            z: panel.zRotation
+          }}
         />
       ))}
     <Entity light={{ type: "point" }} />

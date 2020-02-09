@@ -20,8 +20,16 @@ const Prototype = props => {
 
     return (
       <Flex>
-        <Canvas panels={panels} selectedPanel={selectedPanel} />
-        <Box p={3} m={3} sx={{ position: "fixed", zIndex: 1 }}>
+        <Canvas panels={panels} selected={selectedPanel} />
+        <Box
+          p={3}
+          sx={{
+            position: "fixed",
+            zIndex: 1,
+            height: "100vh",
+            overflow: "scroll"
+          }}
+        >
           <Box mb={3}>
             <Heading>Prototype info</Heading>
             <Text>ID: {props.prototype._id}</Text>

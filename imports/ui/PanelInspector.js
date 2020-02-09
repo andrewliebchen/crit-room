@@ -6,16 +6,15 @@ import PropTypes from "prop-types";
 const PanelInspector = props => (
   <Box>
     <Heading>Panel inspector</Heading>
-    {/* <Box mb={1}>
-      <FormField label="Name" type="text" />
-      <FormField label="Image URL" type="text" />
-      <FormField label="Color" type="color" />
-    </Box> */}
+    <Box mb={1}>
+      <FormField type="text" param="name" {...props.panel} />
+      <FormField type="url" param="src" {...props.panel} />
+    </Box>
     <Box mb={1}>
       <Text>Size</Text>
-      <FormField type="number" param="width" panel={props.panel} />
-      {/* <FormField label="Height" type="number" value={props.panel.height} />
-      <FormField label="Depth" type="number" value={props.panel.depth} /> */}
+      <FormField type="number" param="width" {...props.panel} />
+      <FormField type="number" param="height" {...props.panel} />
+      <FormField type="number" param="depth" {...props.panel} />
     </Box>
     {/* <Box>
       <Flex>

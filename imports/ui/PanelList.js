@@ -26,7 +26,9 @@ const PanelList = props => (
               onClick={props.onSelect.bind(null, panel._id)}
               p={1}
             >
-              <Text>{panel._id}</Text>
+              <Text>
+                {panel.name} {panel._id}
+              </Text>
             </Box>
           );
         })
