@@ -15,8 +15,12 @@ const Canvas = props => (
             height: panel.height,
             width: panel.width
           }}
-          material={{ color: "#333" }}
-          position={{ x: panel.x, y: panel.y, z: panel.z }}
+          material={{ color: props.selected === panel._id ? "blue" : "#333" }}
+          position={{
+            x: panel.xPosition,
+            y: panel.yPosition,
+            z: panel.zPosition
+          }}
           rotation={{
             x: panel.xRotation,
             y: panel.yRotation,
@@ -29,7 +33,8 @@ const Canvas = props => (
 );
 
 Canvas.propTypes = {
-  panel: PropTypes.array
+  panel: PropTypes.array,
+  selected: PropTypes.string
 };
 
 export default Canvas;

@@ -14,11 +14,11 @@ Meteor.methods({
       width: 2,
       height: 1,
       depth: 0.1,
-      x: 0,
+      xPosition: 0,
       xRotation: 0,
-      y: 0,
+      yPosition: 0,
       yRotation: 0,
-      z: -5,
+      zPosition: -5,
       zRotation: 0
     });
   },
