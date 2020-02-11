@@ -9,11 +9,11 @@ const FormField = props => (
     <Flex>
       <Input
         type={props.type}
-        value={props[props.param]}
+        defaultValue={props[props.param]}
         onChange={event => {
           let args = {};
           args[props.param] = event.target.value;
-          Meteor.call("panels.update", props._id, args);
+          Meteor.call(props.method, props._id, args);
         }}
       />
     </Flex>
@@ -23,7 +23,8 @@ const FormField = props => (
 FormField.propTypes = {
   _id: PropTypes.string,
   label: PropTypes.string,
-  type: PropTypes.oneOf(["text", "number", "color", "url"])
+  type: PropTypes.oneOf(["text", "number", "color", "url"]),
+  method: PropTypes.string
 };
 
 export default FormField;

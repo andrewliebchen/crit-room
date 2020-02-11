@@ -12,14 +12,39 @@ const PanelInspector = props => {
     <Box>
       <Heading>Panel inspector</Heading>
       <Box mb={1}>
-        <FormField type="text" param="name" {...props.panel} />
-        <FormField type="url" param="src" {...props.panel} />
+        <FormField
+          type="text"
+          param="name"
+          method="panels.update"
+          {...props.panel}
+        />
+        <FormField
+          type="url"
+          param="src"
+          method="panels.update"
+          {...props.panel}
+        />
       </Box>
       <Box mb={1}>
         <Text>Size</Text>
-        <FormField type="number" param="width" {...props.panel} />
-        <FormField type="number" param="height" {...props.panel} />
-        <FormField type="number" param="depth" {...props.panel} />
+        <FormField
+          type="number"
+          param="width"
+          method="panels.update"
+          {...props.panel}
+        />
+        <FormField
+          type="number"
+          param="height"
+          method="panels.update"
+          {...props.panel}
+        />
+        <FormField
+          type="number"
+          param="depth"
+          method="panels.update"
+          {...props.panel}
+        />
       </Box>
       <Box mb={1}>
         <Flex>
@@ -37,11 +62,13 @@ const PanelInspector = props => {
         <FormField
           type="number"
           param={`${selectedAxis}Position`}
+          method="panels.update"
           {...props.panel}
         />
         <FormField
           type="number"
           param={`${selectedAxis}Rotation`}
+          method="panels.update"
           {...props.panel}
         />
       </Box>

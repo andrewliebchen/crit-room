@@ -20,7 +20,9 @@ const SceneList = props => (
             onClick={props.onSelect.bind(null, scene._id)}
             p={1}
           >
-            <Text>{scene._id}</Text>
+            <Text>
+              {scene.name} {scene._id}
+            </Text>
           </Box>
         );
       })

@@ -6,11 +6,18 @@ Meteor.methods({
   "scenes.create"(prototypeId) {
     Scenes.insert({
       createdAt: Date.now(),
-      prototypeId: prototypeId
+      prototypeId: prototypeId,
+      name: "Scene"
     });
   },
 
   "scenes.delete"(id) {
     Scenes.remove(id);
+  },
+
+  "scenes.update"(id, args) {
+    Scenes.update(id, {
+      $set: args
+    });
   }
 });

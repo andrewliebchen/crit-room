@@ -8,6 +8,7 @@ import SceneList from "./SceneList";
 import Canvas from "./Canvas";
 import PanelList from "./PanelList";
 import PanelInspector from "./PanelInspector";
+import SceneInspector from "./SceneInspector";
 
 const Prototype = props => {
   if (props.prototype) {
@@ -42,6 +43,13 @@ const Prototype = props => {
               onSelect={id => setSelectedScene(id)}
             />
           </Box>
+          {selectedScene && (
+            <Box mb={3}>
+              <SceneInspector
+                scene={props.scenes.find(scene => scene._id === selectedScene)}
+              />
+            </Box>
+          )}
           <Box mb={3}>
             <PanelList
               panels={panels}
