@@ -15,7 +15,15 @@ const Canvas = props => (
             height: panel.height,
             width: panel.width
           }}
-          material={{ color: props.selected === panel._id ? "blue" : "#333" }}
+          material={{
+            color:
+              props.selected === panel._id
+                ? "blue"
+                : panel.src
+                ? "#fff"
+                : "#333",
+            src: panel.src
+          }}
           position={{
             x: panel.xPosition,
             y: panel.yPosition,

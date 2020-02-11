@@ -21,7 +21,7 @@ const PanelInspector = props => {
         <FormField type="number" param="height" {...props.panel} />
         <FormField type="number" param="depth" {...props.panel} />
       </Box>
-      <Box>
+      <Box mb={1}>
         <Flex>
           {axes.map(axis => (
             <Button
@@ -45,6 +45,15 @@ const PanelInspector = props => {
           {...props.panel}
         />
       </Box>
+      <Button
+        onClick={() => {
+          if (window.confirm("Are you sure you want to delete this panel?")) {
+            Meteor.call("panels.delete", props.panel._id);
+          }
+        }}
+      >
+        Delete
+      </Button>
     </Box>
   );
 };
