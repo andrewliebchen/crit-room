@@ -15,15 +15,17 @@ const Prototype = props => {
     const [selectedScene, setSelectedScene] = useState(null);
     const [selectedPanel, setSelectedPanel] = useState(null);
 
+    const scene = props.scenes.find(scene => scene._id === selectedScene);
     const panels = props.panels.filter(
       panel => panel.sceneId === selectedScene
     );
 
     return (
       <Flex>
-        <Canvas panels={panels} selected={selectedPanel} />
+        <Canvas panels={panels} selectedPanel={selectedPanel} scene={scene} />
         <Box
           p={3}
+          bg="white"
           sx={{
             position: "fixed",
             zIndex: 1,
@@ -45,9 +47,7 @@ const Prototype = props => {
           </Box>
           {selectedScene && (
             <Box mb={3}>
-              <SceneInspector
-                scene={props.scenes.find(scene => scene._id === selectedScene)}
-              />
+              <SceneInspector scene={scene} />
             </Box>
           )}
           <Box mb={3}>

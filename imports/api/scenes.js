@@ -7,7 +7,8 @@ Meteor.methods({
     Scenes.insert({
       createdAt: Date.now(),
       prototypeId: prototypeId,
-      name: "Scene"
+      name: "Scene",
+      background: "none"
     });
   },
 

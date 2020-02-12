@@ -2,9 +2,13 @@ import "aframe";
 import { Entity, Scene } from "aframe-react";
 import React from "react";
 import PropTypes from "prop-types";
+import { backgrounds } from "../utils/manifest";
 
 const Canvas = props => (
   <Scene>
+    {props.scene && (
+      <Entity primitive="a-sky" src={backgrounds[props.scene.background].src} />
+    )}
     {props.panels.length > 0 &&
       props.panels.map(panel => (
         <Entity
@@ -17,7 +21,7 @@ const Canvas = props => (
           }}
           material={{
             color:
-              props.selected === panel._id
+              props.selectedPanel === panel._id
                 ? "blue"
                 : panel.src
                 ? "#fff"
@@ -42,7 +46,8 @@ const Canvas = props => (
 
 Canvas.propTypes = {
   panel: PropTypes.array,
-  selected: PropTypes.string
+  selectedPanel: PropTypes.string,
+  scene: PropTypes.object
 };
 
 export default Canvas;
