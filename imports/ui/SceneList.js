@@ -17,7 +17,7 @@ const SceneList = props => (
             key={scene._id}
             bg={isSelected && "blue"}
             color={isSelected && "white"}
-            onClick={props.onSelect.bind(null, scene._id)}
+            onClick={props.onSelect.bind(null, isSelected ? null : scene._id)}
             p={1}
           >
             <Text>

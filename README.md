@@ -16,7 +16,7 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 
 - ✅ Image on panel
 - ✅ CRUD for panels
-- ⬜️ Environment for scene (wrap around image)
+- ✅ Environment for scene (wrap around image)
 - ✅ Scene CRUD
 - ⬜️ Scene environment params
 - ⬜️ Name for project

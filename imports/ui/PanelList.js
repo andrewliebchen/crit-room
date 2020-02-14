@@ -23,7 +23,7 @@ const PanelList = props => (
               key={panel._id}
               bg={isSelected && "blue"}
               color={isSelected && "white"}
-              onClick={props.onSelect.bind(null, panel._id)}
+              onClick={props.onSelect.bind(null, isSelected ? null : panel._id)}
               p={1}
             >
               <Text>

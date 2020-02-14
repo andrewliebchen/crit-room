@@ -16,6 +16,8 @@ const SceneInspector = props => (
         method="scenes.update"
         {...props.scene}
       />
+    </Box>
+    <Box mb={1}>
       <Select
         defaultValue={props.scene.background}
         onChange={event =>
