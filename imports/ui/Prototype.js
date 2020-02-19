@@ -9,12 +9,13 @@ import Canvas from "./Canvas";
 import PanelList from "./PanelList";
 import PanelInspector from "./PanelInspector";
 import SceneInspector from "./SceneInspector";
+import FormField from "./FormField";
 
 const Prototype = props => {
-  if (props.prototype) {
-    const [selectedScene, setSelectedScene] = useState(null);
-    const [selectedPanel, setSelectedPanel] = useState(null);
+  const [selectedScene, setSelectedScene] = useState(null);
+  const [selectedPanel, setSelectedPanel] = useState(null);
 
+  if (props.prototype) {
     const scene = props.scenes.find(scene => scene._id === selectedScene);
     const panels = props.panels.filter(
       panel => panel.sceneId === selectedScene
@@ -36,13 +37,22 @@ const Prototype = props => {
           <Box mb={3}>
             <Heading>Prototype info</Heading>
             <Text>ID: {props.prototype._id}</Text>
+            <FormField
+              param="name"
+              type="text"
+              method="prototypes.update"
+              {...props.prototype}
+            />
           </Box>
           <Box mb={3}>
             <SceneList
               scenes={props.scenes}
               prototypeId={props.prototype._id}
               selectedScene={selectedScene}
-              onSelect={id => setSelectedScene(id)}
+              onSelect={id => {
+                setSelectedScene(id);
+                setSelectedPanel(null);
+              }}
             />
           </Box>
           {selectedScene && (
@@ -50,20 +60,26 @@ const Prototype = props => {
               <SceneInspector scene={scene} />
             </Box>
           )}
-          <Box mb={3}>
-            <PanelList
-              panels={panels}
-              prototypeId={props.prototype._id}
-              selectedScene={selectedScene}
-              selectedPanel={selectedPanel}
-              onSelect={id => setSelectedPanel(id)}
-            />
-          </Box>
-          {selectedPanel && (
-            <Box mb={3}>
-              <PanelInspector
-                panel={props.panels.find(panel => panel._id === selectedPanel)}
-              />
+          {selectedScene && (
+            <Box>
+              <Box mb={3}>
+                <PanelList
+                  panels={panels}
+                  prototypeId={props.prototype._id}
+                  selectedScene={selectedScene}
+                  selectedPanel={selectedPanel}
+                  onSelect={id => setSelectedPanel(id)}
+                />
+              </Box>
+              {selectedPanel && (
+                <Box mb={3}>
+                  <PanelInspector
+                    panel={props.panels.find(
+                      panel => panel._id === selectedPanel
+                    )}
+                  />
+                </Box>
+              )}
             </Box>
           )}
         </Box>

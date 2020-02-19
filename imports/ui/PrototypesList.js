@@ -12,7 +12,9 @@ const PrototypesList = props => (
     {props.prototypes.length > 0 ? (
       props.prototypes.map(prototype => (
         <Flex key={prototype._id}>
-          <Link href={`/${prototype._id}`}>{prototype._id}</Link>
+          <Link href={`/prototypes/${prototype._id}`}>
+            {prototype.name} {prototype._id}
+          </Link>
           <Link ml={2} onClick={() => console.log("Edit")}>
             Edit
           </Link>

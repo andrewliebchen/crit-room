@@ -22,7 +22,7 @@ const FormField = props => (
 
 FormField.propTypes = {
   _id: PropTypes.string,
-  label: PropTypes.string,
+  param: PropTypes.string,
   type: PropTypes.oneOf(["text", "number", "color", "url"]),
   method: PropTypes.string
 };

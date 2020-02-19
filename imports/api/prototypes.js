@@ -11,5 +11,11 @@ Meteor.methods({
 
   "prototypes.delete"(id) {
     Prototypes.remove(id);
+  },
+
+  "prototypes.update"(id, args) {
+    Prototypes.update(id, {
+      $set: args
+    });
   }
 });

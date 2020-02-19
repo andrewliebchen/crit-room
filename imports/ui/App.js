@@ -10,7 +10,7 @@ import theme from "../utils/theme";
 const App = props => (
   <ThemeProvider theme={theme}>
     <Router>
-      <Route path="/:id" component={Prototype} />
+      <Route path="/prototypes/:id" component={Prototype} />
       <Route path="/" exact component={PrototypesList} />
     </Router>
   </ThemeProvider>
