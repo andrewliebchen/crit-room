@@ -13,6 +13,7 @@ const Canvas = props => (
       props.panels.map(panel => (
         <Entity
           key={panel._id}
+          events={{ click: () => console.log(panel._id) }}
           geometry={{
             primitive: "box",
             depth: panel.depth,
@@ -41,6 +42,18 @@ const Canvas = props => (
         />
       ))}
     <Entity light={{ type: "point" }} />
+    <Entity primitive="a-camera">
+      <Entity
+        primitive="a-cursor"
+        animation__click={{
+          property: "scale",
+          startEvents: "click",
+          from: "0.1 0.1 0.1",
+          to: "1 1 1",
+          dur: 150
+        }}
+      />
+    </Entity>
   </Scene>
 );
 

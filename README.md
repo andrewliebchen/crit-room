@@ -19,7 +19,7 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Environment for scene (wrap around image)
 - ✅ Scene CRUD
 - ⬜️ Scene environment params
-- ⬜️ Name for project
+- ✅ Name for project
 - ⬜️ Hotspots on panels
 - ⬜️ Link hotspots
 - ⬜️ Close/hide edit pane
