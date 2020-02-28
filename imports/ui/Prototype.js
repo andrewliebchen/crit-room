@@ -31,7 +31,8 @@ const Prototype = props => {
             position: "fixed",
             zIndex: 1,
             height: "100vh",
-            overflow: "scroll"
+            overflow: "scroll",
+            userSelect: "none"
           }}
         >
           <Box mb={3}>

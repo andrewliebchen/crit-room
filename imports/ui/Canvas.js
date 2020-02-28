@@ -6,29 +6,13 @@ import { backgrounds } from "../utils/manifest";
 
 const Canvas = props => (
   <Scene>
-    {props.scene && (
+    {props.scene && props.scene.background !== "none" && (
       <Entity primitive="a-sky" src={backgrounds[props.scene.background].src} />
     )}
     {props.panels.length > 0 &&
       props.panels.map(panel => (
         <Entity
           key={panel._id}
-          events={{ click: () => console.log(panel._id) }}
-          geometry={{
-            primitive: "box",
-            depth: panel.depth,
-            height: panel.height,
-            width: panel.width
-          }}
-          material={{
-            color:
-              props.selectedPanel === panel._id
-                ? "blue"
-                : panel.src
-                ? "#fff"
-                : "#333",
-            src: panel.src
-          }}
           position={{
             x: panel.xPosition,
             y: panel.yPosition,
@@ -39,7 +23,32 @@ const Canvas = props => (
             y: panel.yRotation,
             z: panel.zRotation
           }}
-        />
+        >
+          <Entity
+            geometry={{
+              primitive: "box",
+              depth: panel.depth,
+              height: panel.height,
+              width: panel.width
+            }}
+            material={{
+              color: panel.src ? "#fff" : "#333",
+              src: panel.src
+            }}
+          />
+          <Entity
+            events={{ click: () => console.log(panel._id) }}
+            geometry={{
+              primitive: "plane",
+              height: panel.height,
+              width: panel.width
+            }}
+            material={{ color: "blue", opacity: 0.1 }}
+            position={{
+              z: 0.1
+            }}
+          />
+        </Entity>
       ))}
     <Entity light={{ type: "point" }} />
     <Entity primitive="a-camera">
