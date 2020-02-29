@@ -33,9 +33,10 @@ const SceneList = props => (
 );
 
 SceneList.propTypes = {
+  onSelect: PropTypes.func,
+  prototypeId: PropTypes.string,
   scenes: PropTypes.array,
-  selectedScene: PropTypes.string,
-  onSelect: PropTypes.func
+  selectedScene: PropTypes.string
 };
 
 export default SceneList;

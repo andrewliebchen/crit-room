@@ -39,10 +39,11 @@ const PanelList = props => (
 );
 
 PanelList.propTypes = {
+  onSelect: PropTypes.func,
   panels: PropTypes.array,
-  selectedScene: PropTypes.string,
+  prototypeId: PropTypes.string,
   selectedPanel: PropTypes.string,
-  onSelect: PropTypes.func
+  selectedScene: PropTypes.string
 };
 
 export default PanelList;

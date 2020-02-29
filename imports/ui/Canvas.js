@@ -1,8 +1,8 @@
 import "aframe";
-import { Entity, Scene } from "aframe-react";
-import React from "react";
-import PropTypes from "prop-types";
 import { backgrounds } from "../utils/manifest";
+import { Entity, Scene } from "aframe-react";
+import PropTypes from "prop-types";
+import React from "react";
 
 const Canvas = props => (
   <Scene>
@@ -36,18 +36,23 @@ const Canvas = props => (
               src: panel.src
             }}
           />
-          <Entity
-            events={{ click: () => console.log(panel._id) }}
-            geometry={{
-              primitive: "plane",
-              height: panel.height,
-              width: panel.width
-            }}
-            material={{ color: "blue", opacity: 0.1 }}
-            position={{
-              z: 0.1
-            }}
-          />
+          {props.hotspots.map(hotspot => (
+            <Entity
+              key={hotspot._id}
+              events={{ click: () => console.log(hotspot._id) }}
+              geometry={{
+                primitive: "plane",
+                height: hotspot.height,
+                width: hotspot.width
+              }}
+              material={{ color: "blue", opacity: 0.1 }}
+              position={{
+                x: hotspot.x,
+                y: hotspot.y,
+                z: 0.1
+              }}
+            />
+          ))}
         </Entity>
       ))}
     <Entity light={{ type: "point" }} />
@@ -69,7 +74,8 @@ const Canvas = props => (
 Canvas.propTypes = {
   panel: PropTypes.array,
   selectedPanel: PropTypes.string,
-  scene: PropTypes.object
+  scene: PropTypes.object,
+  hotspots: PropTypes.array
 };
 
 export default Canvas;

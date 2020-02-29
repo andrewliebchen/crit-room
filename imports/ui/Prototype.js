@@ -1,29 +1,37 @@
-import React, { useState } from "react";
-import { withTracker } from "meteor/react-meteor-data";
+import { Flex, Box, Text, Heading } from "rebass";
+import { Hotspots } from "../api/hotspots";
+import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
 import { Scenes } from "../api/scenes";
-import { Panels } from "../api/panels";
-import { Flex, Box, Text, Heading } from "rebass";
-import SceneList from "./SceneList";
+import { withTracker } from "meteor/react-meteor-data";
 import Canvas from "./Canvas";
-import PanelList from "./PanelList";
-import PanelInspector from "./PanelInspector";
-import SceneInspector from "./SceneInspector";
 import FormField from "./FormField";
+import PanelInspector from "./PanelInspector";
+import PanelList from "./PanelList";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import SceneInspector from "./SceneInspector";
+import SceneList from "./SceneList";
+import HotspotInspector from "./HotspotInspector";
+import HotspotList from "./HotspotList";
 
 const Prototype = props => {
   const [selectedScene, setSelectedScene] = useState(null);
   const [selectedPanel, setSelectedPanel] = useState(null);
+  const [selectedHotspot, setSelectedHotspot] = useState(null);
 
   if (props.prototype) {
     const scene = props.scenes.find(scene => scene._id === selectedScene);
     const panels = props.panels.filter(
       panel => panel.sceneId === selectedScene
     );
+    const hotspots = props.hotspots.filter(
+      hotspot => hotspot.panelId === selectedPanel
+    );
 
     return (
       <Flex>
-        <Canvas panels={panels} selectedPanel={selectedPanel} scene={scene} />
+        <Canvas selectedPanel={selectedPanel} {...props} />
         <Box
           p={3}
           bg="white"
@@ -73,12 +81,32 @@ const Prototype = props => {
                 />
               </Box>
               {selectedPanel && (
-                <Box mb={3}>
-                  <PanelInspector
-                    panel={props.panels.find(
-                      panel => panel._id === selectedPanel
-                    )}
-                  />
+                <Box>
+                  <Box mb={3}>
+                    <PanelInspector
+                      panel={props.panels.find(
+                        panel => panel._id === selectedPanel
+                      )}
+                    />
+                  </Box>
+                  <Box mb={3}>
+                    <HotspotList
+                      hotspots={hotspots}
+                      prototypeId={props.prototype._id}
+                      selectedPanel={selectedPanel}
+                      selectedHotspot={selectedHotspot}
+                      onSelect={id => setSelectedHotspot(id)}
+                    />
+                  </Box>
+                  {selectedHotspot && (
+                    <Box mb={3}>
+                      <HotspotInspector
+                        hotspot={props.hotspots.find(
+                          hotspot => hotspot._id === selectedHotspot
+                        )}
+                      />
+                    </Box>
+                  )}
                 </Box>
               )}
             </Box>
@@ -91,11 +119,19 @@ const Prototype = props => {
   }
 };
 
+Prototype.propTypes = {
+  prototype: PropTypes.object,
+  scenes: PropTypes.array,
+  panels: PropTypes.array,
+  hotspots: PropTypes.array
+};
+
 export default withTracker(props => {
   const id = props.match.params.id;
   return {
     prototype: Prototypes.findOne(id),
     scenes: Scenes.find({ prototypeId: id }).fetch(),
-    panels: Panels.find({ prototypeId: id }).fetch()
+    panels: Panels.find({ prototypeId: id }).fetch(),
+    hotspots: Hotspots.find({ prototypeId: id }).fetch()
   };
 })(Prototype);
