@@ -36,23 +36,26 @@ const Canvas = props => (
               src: panel.src
             }}
           />
-          {props.hotspots.map(hotspot => (
-            <Entity
-              key={hotspot._id}
-              events={{ click: () => console.log(hotspot._id) }}
-              geometry={{
-                primitive: "plane",
-                height: hotspot.height,
-                width: hotspot.width
-              }}
-              material={{ color: "blue", opacity: 0.1 }}
-              position={{
-                x: hotspot.x,
-                y: hotspot.y,
-                z: 0.1
-              }}
-            />
-          ))}
+          {props.hotspots &&
+            props.hotspots.map(hotspot => (
+              <Entity
+                key={hotspot._id}
+                events={{
+                  click: props.onHotspotClick.bind(null, hotspot.link)
+                }}
+                geometry={{
+                  primitive: "plane",
+                  height: hotspot.height,
+                  width: hotspot.width
+                }}
+                material={{ color: "blue", opacity: 0.1 }}
+                position={{
+                  x: hotspot.x,
+                  y: hotspot.y,
+                  z: 0.1
+                }}
+              />
+            ))}
         </Entity>
       ))}
     <Entity light={{ type: "point" }} />
@@ -75,7 +78,8 @@ Canvas.propTypes = {
   panel: PropTypes.array,
   selectedPanel: PropTypes.string,
   scene: PropTypes.object,
-  hotspots: PropTypes.array
+  hotspots: PropTypes.array,
+  onHotspotClick: PropTypes.func
 };
 
 export default Canvas;

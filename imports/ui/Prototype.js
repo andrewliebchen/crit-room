@@ -31,7 +31,17 @@ const Prototype = props => {
 
     return (
       <Flex>
-        <Canvas selectedPanel={selectedPanel} {...props} />
+        <Canvas
+          scene={scene}
+          selectedPanel={selectedPanel}
+          panels={panels}
+          hotspots={hotspots}
+          onHotspotClick={sceneId => {
+            setSelectedScene(sceneId);
+            setSelectedPanel(null);
+            setSelectedHotspot(null);
+          }}
+        />
         <Box
           p={3}
           bg="white"
@@ -61,6 +71,7 @@ const Prototype = props => {
               onSelect={id => {
                 setSelectedScene(id);
                 setSelectedPanel(null);
+                setSelectedHotspot(null);
               }}
             />
           </Box>
@@ -77,7 +88,10 @@ const Prototype = props => {
                   prototypeId={props.prototype._id}
                   selectedScene={selectedScene}
                   selectedPanel={selectedPanel}
-                  onSelect={id => setSelectedPanel(id)}
+                  onSelect={id => {
+                    setSelectedPanel(id);
+                    setSelectedHotspot(null);
+                  }}
                 />
               </Box>
               {selectedPanel && (
@@ -104,6 +118,7 @@ const Prototype = props => {
                         hotspot={props.hotspots.find(
                           hotspot => hotspot._id === selectedHotspot
                         )}
+                        scenes={props.scenes}
                       />
                     </Box>
                   )}

@@ -35,11 +35,27 @@ const HotspotInspector = props => (
         {...props.hotspot}
       />
     </Box>
+    <Box mb={1}>
+      <Select
+        onChange={event =>
+          Meteor.call("hotspots.update", props.hotspot._id, {
+            link: event.target.value
+          })
+        }
+      >
+        <option value={null}>None</option>
+        {props.scenes.map(scene => (
+          <option key={scene._id} value={scene._id}>
+            {scene.name} {scene._id}
+          </option>
+        ))}
+      </Select>
+    </Box>
 
     <Button
       onClick={() => {
         if (window.confirm("Are you sure you want to delete this hotspot?")) {
-          Meteor.call("hotspot.delete", props.hotspot._id);
+          Meteor.call("hotspots.delete", props.hotspot._id);
         }
       }}
     >
@@ -49,7 +65,8 @@ const HotspotInspector = props => (
 );
 
 HotspotInspector.propTypes = {
-  hotspot: PropTypes.object
+  hotspot: PropTypes.object,
+  scenes: PropTypes.array
 };
 
 export default HotspotInspector;

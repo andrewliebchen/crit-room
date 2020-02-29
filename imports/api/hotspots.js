@@ -11,7 +11,8 @@ Meteor.methods({
       height: 1,
       width: 1,
       x: 0,
-      y: 0
+      y: 0,
+      target: null
     });
   },
 
