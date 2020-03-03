@@ -9,7 +9,7 @@ const HotspotList = props => (
       <Heading>Hotspot</Heading>
       <Button
         onClick={() =>
-          Meteor.call("hotspots.create", props.prototypeId, props.selectedPanel)
+          Meteor.call("hotspots.create", props.prototypeId, props.selectedPanelId)
         }
       >
         +
@@ -17,9 +17,9 @@ const HotspotList = props => (
     </Flex>
     {props.hotspots.length > 0 ? (
       props.hotspots
-        .filter(hotspot => hotspot.sceneId === props.selectedScene)
+        .filter(hotspot => hotspot.sceneId === props.selectedSceneId)
         .map(hotspot => {
-          const isSelected = props.selectedHotspot === hotspot._id;
+          const isSelected = props.selectedHotspotId === hotspot._id;
           return (
             <Box
               key={hotspot._id}
@@ -46,8 +46,8 @@ const HotspotList = props => (
 HotspotList.propTypes = {
   hotspots: PropTypes.array,
   prototypeId: PropTypes.string,
-  selectedPanel: PropTypes.string,
-  selectedHotspot: PropTypes.string,
+  selectedPanelId: PropTypes.string,
+  selectedHotspotId: PropTypes.string,
   onSelect: PropTypes.func
 };
 

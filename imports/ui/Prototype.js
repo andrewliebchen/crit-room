@@ -10,36 +10,35 @@ import PanelInspector from "./PanelInspector";
 import PanelList from "./PanelList";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import SceneInspector from "./SceneInspector";
 import SceneList from "./SceneList";
 import HotspotInspector from "./HotspotInspector";
 import HotspotList from "./HotspotList";
 
 const Prototype = props => {
-  const [selectedScene, setSelectedScene] = useState(null);
-  const [selectedPanel, setSelectedPanel] = useState(null);
-  const [selectedHotspot, setSelectedHotspot] = useState(null);
+  const [selectedSceneId, setSelectedSceneId] = useState(null);
+  const [selectedPanelId, setSelectedPanelId] = useState(null);
+  const [selectedHotspotId, setSelectedHotspotId] = useState(null);
 
   if (props.prototype) {
-    const scene = props.scenes.find(scene => scene._id === selectedScene);
+    const scene = props.scenes.find(scene => scene._id === selectedSceneId);
     const panels = props.panels.filter(
-      panel => panel.sceneId === selectedScene
+      panel => panel.sceneId === selectedSceneId
     );
     const hotspots = props.hotspots.filter(
-      hotspot => hotspot.panelId === selectedPanel
+      hotspot => hotspot.panelId === selectedPanelId
     );
 
     return (
       <Flex>
         <Canvas
           scene={scene}
-          selectedPanel={selectedPanel}
+          selectedPanelId={selectedPanelId}
           panels={panels}
           hotspots={hotspots}
           onHotspotClick={sceneId => {
-            setSelectedScene(sceneId);
-            setSelectedPanel(null);
-            setSelectedHotspot(null);
+            setSelectedSceneId(sceneId);
+            setSelectedPanelId(null);
+            setSelectedHotspotId(null);
           }}
         />
         <Box
@@ -50,7 +49,6 @@ const Prototype = props => {
             zIndex: 1,
             left: 3,
             top: 3,
-            bottom: 3,
             overflow: "scroll",
             userSelect: "none"
           }}
@@ -69,39 +67,34 @@ const Prototype = props => {
             <SceneList
               scenes={props.scenes}
               prototypeId={props.prototype._id}
-              selectedScene={selectedScene}
+              selectedSceneId={selectedSceneId}
               onSelect={id => {
-                setSelectedScene(id);
-                setSelectedPanel(null);
-                setSelectedHotspot(null);
+                setSelectedSceneId(id);
+                setSelectedPanelId(null);
+                setSelectedHotspotId(null);
               }}
             />
           </Box>
-          {selectedScene && (
-            <Box mb={3}>
-              <SceneInspector scene={scene} />
-            </Box>
-          )}
-          {selectedScene && (
+          {selectedSceneId && (
             <Box>
               <Box mb={3}>
                 <PanelList
                   panels={panels}
                   prototypeId={props.prototype._id}
-                  selectedScene={selectedScene}
-                  selectedPanel={selectedPanel}
+                  selectedSceneId={selectedSceneId}
+                  selectedPanelId={selectedPanelId}
                   onSelect={id => {
-                    setSelectedPanel(id);
-                    setSelectedHotspot(null);
+                    setSelectedPanelId(id);
+                    setSelectedHotspotId(null);
                   }}
                 />
               </Box>
-              {selectedPanel && (
+              {selectedPanelId && (
                 <Box>
                   <Box mb={3}>
                     <PanelInspector
                       panel={props.panels.find(
-                        panel => panel._id === selectedPanel
+                        panel => panel._id === selectedPanelId
                       )}
                     />
                   </Box>
@@ -109,16 +102,16 @@ const Prototype = props => {
                     <HotspotList
                       hotspots={hotspots}
                       prototypeId={props.prototype._id}
-                      selectedPanel={selectedPanel}
-                      selectedHotspot={selectedHotspot}
-                      onSelect={id => setSelectedHotspot(id)}
+                      selectedPanelId={selectedPanelId}
+                      selectedHotspotId={selectedHotspotId}
+                      onSelect={id => setSelectedHotspotId(id)}
                     />
                   </Box>
-                  {selectedHotspot && (
+                  {selectedHotspotId && (
                     <Box mb={3}>
                       <HotspotInspector
                         hotspot={props.hotspots.find(
-                          hotspot => hotspot._id === selectedHotspot
+                          hotspot => hotspot._id === selectedHotspotId
                         )}
                         scenes={props.scenes}
                       />

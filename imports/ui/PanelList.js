@@ -9,7 +9,7 @@ const PanelList = props => (
       <Heading>Panel</Heading>
       <Button
         onClick={() =>
-          Meteor.call("panels.create", props.prototypeId, props.selectedScene)
+          Meteor.call("panels.create", props.prototypeId, props.selectedSceneId)
         }
       >
         +
@@ -17,9 +17,9 @@ const PanelList = props => (
     </Flex>
     {props.panels.length > 0 ? (
       props.panels
-        .filter(panel => panel.sceneId === props.selectedScene)
+        .filter(panel => panel.sceneId === props.selectedSceneId)
         .map(panel => {
-          const isSelected = props.selectedPanel === panel._id;
+          const isSelected = props.selectedPanelId === panel._id;
           return (
             <Box
               key={panel._id}
@@ -44,8 +44,8 @@ PanelList.propTypes = {
   onSelect: PropTypes.func,
   panels: PropTypes.array,
   prototypeId: PropTypes.string,
-  selectedPanel: PropTypes.string,
-  selectedScene: PropTypes.string
+  selectedPanelId: PropTypes.string,
+  selectedSceneId: PropTypes.string
 };
 
 export default PanelList;

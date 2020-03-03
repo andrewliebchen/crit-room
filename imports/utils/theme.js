@@ -61,6 +61,7 @@ export default {
     },
     listItem: {
       p: 2,
+      mx: -2,
       borderRadius: 2,
       cursor: "pointer"
     }
