@@ -1,11 +1,11 @@
 import React from "react";
 import { Flex, Box, Text } from "rebass";
-import { Input } from "@rebass/forms";
+import { Input, Label } from "@rebass/forms";
 import PropTypes from "prop-types";
 
 const FormField = props => (
   <Box>
-    <Text>{props.param}</Text>
+    <Label>{props.param}</Label>
     <Flex>
       <Input
         type={props.type}

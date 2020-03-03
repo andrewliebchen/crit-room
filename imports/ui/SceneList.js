@@ -1,24 +1,24 @@
-import React from "react";
-import { Box, Text, Heading, Button } from "rebass";
+import { Box, Text, Heading, Button, Flex } from "rebass";
 import { Meteor } from "meteor/meteor";
+import Pane from "./Pane";
 import PropTypes from "prop-types";
+import React from "react";
 
 const SceneList = props => (
-  <Box>
-    <Heading>Scenes</Heading>
-    <Button onClick={() => Meteor.call("scenes.create", props.prototypeId)}>
-      New scene
-    </Button>
+  <Pane
+    title="Scenes"
+    onAdd={() => Meteor.call("scenes.create", props.prototypeId)}
+  >
     {props.scenes.length > 0 ? (
       props.scenes.map(scene => {
         const isSelected = props.selectedScene === scene._id;
         return (
           <Box
             key={scene._id}
-            bg={isSelected && "blue"}
+            variant="listItem"
+            bg={isSelected && "primary"}
             color={isSelected && "white"}
             onClick={props.onSelect.bind(null, isSelected ? null : scene._id)}
-            p={1}
           >
             <Text>
               {scene.name} {scene._id}
@@ -29,7 +29,7 @@ const SceneList = props => (
     ) : (
       <Text>Loading</Text>
     )}
-  </Box>
+  </Pane>
 );
 
 SceneList.propTypes = {

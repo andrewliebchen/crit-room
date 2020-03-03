@@ -1,12 +1,13 @@
 export default {
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body:
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
     monospace: "Menlo, monospace"
   },
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  borderRadius: [0, 2, 4, 8, 16],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -22,6 +23,47 @@ export default {
     primary: "blue",
     secondary: "purple",
     muted: "#f6f6f6"
+  },
+  shadows: {
+    card: "0 2px 10px rgba(0, 0, 0, 0.2)"
+  },
+  buttons: {
+    primary: {
+      bg: "primary",
+      borderRadius: 2,
+      color: "white",
+      cursor: "pointer"
+    }
+  },
+  link: {
+    color: "primary",
+    cursor: "pointer"
+  },
+  label: {
+    mb: 1,
+    textTransform: "capitalize",
+    fontSize: 1,
+    fontWeight: "bold"
+  },
+  input: {
+    borderRadius: 2,
+    "&:focus": {
+      outline: "none",
+      borderColor: "primary"
+    }
+  },
+  variants: {
+    card: {
+      p: 3,
+      bg: "background",
+      boxShadow: "card",
+      borderRadius: 3
+    },
+    listItem: {
+      p: 2,
+      borderRadius: 2,
+      cursor: "pointer"
+    }
   },
   styles: {
     root: {

@@ -3,6 +3,7 @@ import { Flex, Text, Box, Link, Button } from "rebass";
 import { withTracker } from "meteor/react-meteor-data";
 import { Prototypes } from "../api/prototypes";
 import { Meteor } from "meteor/meteor";
+import { Trash, Edit2 } from "react-feather";
 
 const PrototypesList = props => (
   <Box>
@@ -15,14 +16,11 @@ const PrototypesList = props => (
           <Link href={`/prototypes/${prototype._id}`}>
             {prototype.name} {prototype._id}
           </Link>
-          <Link ml={2} onClick={() => console.log("Edit")}>
-            Edit
-          </Link>
           <Link
             ml={2}
             onClick={() => Meteor.call("prototypes.delete", prototype._id)}
           >
-            Delete
+            <Trash />
           </Link>
         </Flex>
       ))

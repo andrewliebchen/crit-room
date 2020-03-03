@@ -43,12 +43,14 @@ const Prototype = props => {
           }}
         />
         <Box
-          p={3}
-          bg="white"
+          variant="card"
+          width={300}
           sx={{
             position: "fixed",
             zIndex: 1,
-            height: "100vh",
+            left: 3,
+            top: 3,
+            bottom: 3,
             overflow: "scroll",
             userSelect: "none"
           }}

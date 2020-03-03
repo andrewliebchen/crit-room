@@ -1,4 +1,5 @@
 import { Box, Button, Text, Heading } from "rebass";
+import { Label } from "@rebass/forms";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
@@ -18,6 +19,7 @@ const SceneInspector = props => (
       />
     </Box>
     <Box mb={1}>
+      <Label>Background</Label>
       <Select
         defaultValue={props.scene.background}
         onChange={event =>

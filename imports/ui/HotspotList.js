@@ -1,18 +1,20 @@
 import React from "react";
-import { Box, Text, Heading, Button } from "rebass";
+import { Box, Text, Heading, Button, Flex } from "rebass";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 
 const HotspotList = props => (
   <Box>
-    <Heading>Hotspot</Heading>
-    <Button
-      onClick={() =>
-        Meteor.call("hotspots.create", props.prototypeId, props.selectedPanel)
-      }
-    >
-      New hotspot
-    </Button>
+    <Flex alignItems="center" justifyContent="space-between">
+      <Heading>Hotspot</Heading>
+      <Button
+        onClick={() =>
+          Meteor.call("hotspots.create", props.prototypeId, props.selectedPanel)
+        }
+      >
+        +
+      </Button>
+    </Flex>
     {props.hotspots.length > 0 ? (
       props.hotspots
         .filter(hotspot => hotspot.sceneId === props.selectedScene)
@@ -21,13 +23,13 @@ const HotspotList = props => (
           return (
             <Box
               key={hotspot._id}
-              bg={isSelected && "blue"}
+              variant="listItem"
+              bg={isSelected && "primary"}
               color={isSelected && "white"}
               onClick={props.onSelect.bind(
                 null,
                 isSelected ? null : hotspot._id
               )}
-              p={1}
             >
               <Text>
                 {hotspot.name} {hotspot._id}
