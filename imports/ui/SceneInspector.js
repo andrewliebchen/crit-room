@@ -1,4 +1,4 @@
-import { Box, Button, Text, Heading } from "rebass";
+import { Box, Button } from "rebass";
 import { Label } from "@rebass/forms";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
@@ -8,8 +8,7 @@ import { Select } from "@rebass/forms";
 import { backgrounds } from "../utils/manifest";
 
 const SceneInspector = props => (
-  <Box>
-    <Heading>Scene Inspector</Heading>
+  <Box variant="card" mx={-4} my={1}>
     <Box mb={1}>
       <FormField
         type="text"
@@ -35,15 +34,6 @@ const SceneInspector = props => (
         ))}
       </Select>
     </Box>
-    <Button
-      onClick={() => {
-        if (window.confirm("Are you sure you want to delete this scene?")) {
-          Meteor.call("scenes.delete", props.scene._id);
-        }
-      }}
-    >
-      Delete
-    </Button>
   </Box>
 );
 

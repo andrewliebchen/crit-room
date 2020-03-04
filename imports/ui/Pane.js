@@ -1,39 +1,57 @@
 import React from "react";
 import { Button, Box, Flex, Heading, Link, Text } from "rebass";
-import { Plus, ArrowLeft } from "react-feather";
+import { Plus, ChevronLeft, ChevronRight, Trash } from "react-feather";
 import PropTypes from "prop-types";
 
 const Pane = props => (
   <Box>
     <Flex alignItems="center" justifyContent="space-between" mb={3}>
       <Flex alignItems="center">
-        <Link onClick={props.onAdd} display="flex" mr={1}>
-          <ArrowLeft />
-        </Link>
+        {props.onDrillup && (
+          <Button variant="icon" mr={1} onClick={props.onDrillup}>
+            <ChevronLeft />
+          </Button>
+        )}
         <Heading>{props.title}</Heading>
       </Flex>
-      <Link onClick={props.onAdd} display="flex">
+      <Button variant="icon" onClick={props.onAdd}>
         <Plus />
-      </Link>
+      </Button>
     </Flex>
-    <Box mb={3}>
-      {props.items.length > 0 &&
-        props.items.map(item => {
-          const isSelected = props.selectedItem === item._id;
-          return (
-            <Box
-              key={item._id}
+
+    {props.items.length > 0 &&
+      props.items.map(item => {
+        const isSelected = props.selectedItem === item._id;
+        return (
+          <Box key={item._id}>
+            <Flex
               variant="listItem"
+              alignItems="center"
+              justifyContent="space-between"
               bg={isSelected && "primary"}
               color={isSelected && "white"}
-              onClick={props.onSelect.bind(null, isSelected ? null : item._id)}
+              onClick={props.onSelect.bind(null, item._id)}
             >
               <Text>{item.name}</Text>
-            </Box>
-          );
-        })}
-    </Box>
-    {props.selectedItem && props.inspector}
+              {isSelected && (
+                <Flex>
+                  <Button variant="icon" color="white">
+                    <Trash />
+                  </Button>
+                  <Button
+                    variant="icon"
+                    color="white"
+                    onClick={props.onDrilldown}
+                  >
+                    <ChevronRight />
+                  </Button>
+                </Flex>
+              )}
+            </Flex>
+            {isSelected && props.inspector}
+          </Box>
+        );
+      })}
   </Box>
 );
 
@@ -42,12 +60,14 @@ Pane.defaultProps = {
 };
 
 Pane.propTypes = {
-  title: PropTypes.string,
-  onAdd: PropTypes.func,
+  inspector: PropTypes.node,
   items: PropTypes.array,
-  selectedItem: PropTypes.string,
+  onAdd: PropTypes.func,
   onSelect: PropTypes.func,
-  inspector: PropTypes.node
+  onDrilldown: PropTypes.func,
+  onDrillup: PropTypes.func,
+  selectedItem: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Pane;

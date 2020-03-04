@@ -9,8 +9,7 @@ const PanelInspector = props => {
   const [selectedAxis, setSelectedAxis] = useState(axes[0]);
 
   return (
-    <Box>
-      <Heading>Panel inspector</Heading>
+    <Box variant="card" mx={-4} my={1}>
       <Box mb={1}>
         <FormField
           type="text"

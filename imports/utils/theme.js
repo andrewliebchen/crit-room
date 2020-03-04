@@ -22,7 +22,7 @@ export default {
     background: "#fff",
     primary: "blue",
     secondary: "purple",
-    muted: "#f6f6f6"
+    muted: "rgba(0, 0, 0, 0.1)"
   },
   shadows: {
     card: "0 2px 10px rgba(0, 0, 0, 0.2)"
@@ -33,6 +33,23 @@ export default {
       borderRadius: 2,
       color: "white",
       cursor: "pointer"
+    },
+    secondary: {
+      borderRadius: 2,
+      bg: "muted",
+      color: "text",
+      cursor: "pointer"
+    },
+    icon: {
+      borderRadius: 2,
+      bg: "transparent",
+      color: "primary",
+      p: 1,
+      display: "flex",
+      cursor: "pointer",
+      "&:hover": {
+        bg: "muted"
+      }
     }
   },
   link: {
@@ -121,7 +138,8 @@ export default {
       lineHeight: "body"
     },
     a: {
-      color: "primary"
+      color: "primary",
+      cursor: "pointer"
     },
     pre: {
       fontFamily: "monospace",

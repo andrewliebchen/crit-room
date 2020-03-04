@@ -7,14 +7,15 @@ import { withTracker } from "meteor/react-meteor-data";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
 import PanelInspector from "./PanelInspector";
-import PanelList from "./PanelList";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import SceneList from "./SceneList";
 import HotspotInspector from "./HotspotInspector";
 import HotspotList from "./HotspotList";
+import SceneInspector from "./SceneInspector";
+import Pane from "./Pane";
 
 const Prototype = props => {
+  const [drilldownLevel, setDrilldownLevel] = useState(0);
   const [selectedSceneId, setSelectedSceneId] = useState(null);
   const [selectedPanelId, setSelectedPanelId] = useState(null);
   const [selectedHotspotId, setSelectedHotspotId] = useState(null);
@@ -47,13 +48,13 @@ const Prototype = props => {
           sx={{
             position: "fixed",
             zIndex: 1,
-            left: 3,
-            top: 3,
-            overflow: "scroll",
+            left: 4,
+            top: 4,
+            overflow: "visible",
             userSelect: "none"
           }}
         >
-          <Box mb={3}>
+          {/* <Box mb={3}>
             <Heading>Prototype info</Heading>
             <Text>ID: {props.prototype._id}</Text>
             <FormField
@@ -62,20 +63,48 @@ const Prototype = props => {
               method="prototypes.update"
               {...props.prototype}
             />
-          </Box>
-          <Box mb={3}>
-            <SceneList
-              scenes={props.scenes}
-              prototypeId={props.prototype._id}
-              selectedSceneId={selectedSceneId}
+          </Box> */}
+          {drilldownLevel === 0 && (
+            <Pane
+              title="Scenes"
+              inspector={<SceneInspector scene={scene} />}
+              items={props.scenes}
+              onDrilldown={() => setDrilldownLevel(1)}
+              onAdd={() => Meteor.call("scenes.create", props.prototype._id)}
               onSelect={id => {
                 setSelectedSceneId(id);
                 setSelectedPanelId(null);
                 setSelectedHotspotId(null);
               }}
+              selectedItem={selectedSceneId}
             />
-          </Box>
-          {selectedSceneId && (
+          )}
+          {drilldownLevel === 1 && (
+            <Pane
+              title="Panels"
+              inspector={
+                <PanelInspector
+                  scene={panels.find(panel => panel._id === selectedPanelId)}
+                />
+              }
+              items={panels}
+              onAdd={() =>
+                Meteor.call(
+                  "panels.create",
+                  props.prototype._id,
+                  selectedSceneId
+                )
+              }
+              onDrillup={() => setDrilldownLevel(0)}
+              onDrilldown={() => setDrilldownLevel(2)}
+              onSelect={id => {
+                setSelectedPanelId(id);
+                setSelectedHotspotId(null);
+              }}
+              selectedItem={selectedPanelId}
+            />
+          )}
+          {/* {selectedSceneId && (
             <Box>
               <Box mb={3}>
                 <PanelList
@@ -120,7 +149,7 @@ const Prototype = props => {
                 </Box>
               )}
             </Box>
-          )}
+          )} */}
         </Box>
       </Flex>
     );
