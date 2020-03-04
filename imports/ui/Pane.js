@@ -38,13 +38,15 @@ const Pane = props => (
                   <Button variant="icon" color="white">
                     <Trash />
                   </Button>
-                  <Button
-                    variant="icon"
-                    color="white"
-                    onClick={props.onDrilldown}
-                  >
-                    <ChevronRight />
-                  </Button>
+                  {props.onDrilldown && (
+                    <Button
+                      variant="icon"
+                      color="white"
+                      onClick={props.onDrilldown}
+                    >
+                      <ChevronRight />
+                    </Button>
+                  )}
                 </Flex>
               )}
             </Flex>

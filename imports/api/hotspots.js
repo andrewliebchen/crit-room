@@ -12,7 +12,8 @@ Meteor.methods({
       width: 1,
       x: 0,
       y: 0,
-      target: null
+      target: null,
+      name: "Hotspot"
     });
   },
 

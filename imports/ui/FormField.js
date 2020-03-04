@@ -4,7 +4,7 @@ import { Input, Label } from "@rebass/forms";
 import PropTypes from "prop-types";
 
 const FormField = props => (
-  <Box>
+  <Box mr={props.mr}>
     <Label>{props.param}</Label>
     <Flex>
       <Input

@@ -10,7 +10,6 @@ import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import HotspotInspector from "./HotspotInspector";
-import HotspotList from "./HotspotList";
 import SceneInspector from "./SceneInspector";
 import Pane from "./Pane";
 
@@ -104,52 +103,30 @@ const Prototype = props => {
               selectedItem={selectedPanelId}
             />
           )}
-          {/* {selectedSceneId && (
-            <Box>
-              <Box mb={3}>
-                <PanelList
-                  panels={panels}
-                  prototypeId={props.prototype._id}
-                  selectedSceneId={selectedSceneId}
-                  selectedPanelId={selectedPanelId}
-                  onSelect={id => {
-                    setSelectedPanelId(id);
-                    setSelectedHotspotId(null);
-                  }}
-                />
-              </Box>
-              {selectedPanelId && (
-                <Box>
-                  <Box mb={3}>
-                    <PanelInspector
-                      panel={props.panels.find(
-                        panel => panel._id === selectedPanelId
-                      )}
-                    />
-                  </Box>
-                  <Box mb={3}>
-                    <HotspotList
-                      hotspots={hotspots}
-                      prototypeId={props.prototype._id}
-                      selectedPanelId={selectedPanelId}
-                      selectedHotspotId={selectedHotspotId}
-                      onSelect={id => setSelectedHotspotId(id)}
-                    />
-                  </Box>
-                  {selectedHotspotId && (
-                    <Box mb={3}>
-                      <HotspotInspector
-                        hotspot={props.hotspots.find(
-                          hotspot => hotspot._id === selectedHotspotId
-                        )}
-                        scenes={props.scenes}
-                      />
-                    </Box>
+          {drilldownLevel === 2 && (
+            <Pane
+              title="Hotspots"
+              inspector={
+                <HotspotInspector
+                  hotspot={props.hotspots.find(
+                    hotspot => hotspot._id === selectedHotspotId
                   )}
-                </Box>
-              )}
-            </Box>
-          )} */}
+                  scenes={props.scenes}
+                />
+              }
+              items={hotspots}
+              onAdd={() =>
+                Meteor.call(
+                  "hotspots.create",
+                  props.prototype._id,
+                  selectedPanelId
+                )
+              }
+              onDrillup={() => setDrilldownLevel(1)}
+              onSelect={id => setSelectedHotspotId(id)}
+              selectedItem={selectedHotspotId}
+            />
+          )}
         </Box>
       </Flex>
     );

@@ -11,46 +11,50 @@ const PanelInspector = props => {
 
   return (
     <Inspector>
-      <Box mb={1}>
+      <FormField
+        type="text"
+        param="name"
+        method="panels.update"
+        {...props.panel}
+      />
+      <FormField
+        type="url"
+        param="src"
+        method="panels.update"
+        {...props.panel}
+      />
+      <Flex mr={-1}>
         <FormField
-          type="text"
-          param="name"
+          mr={1}
+          type="number"
+          param="width"
           method="panels.update"
           {...props.panel}
         />
         <FormField
-          type="url"
-          param="src"
+          mr={1}
+          type="number"
+          param="height"
           method="panels.update"
           {...props.panel}
         />
-      </Box>
-      <FormField
-        type="number"
-        param="width"
-        method="panels.update"
-        {...props.panel}
-      />
-      <FormField
-        type="number"
-        param="height"
-        method="panels.update"
-        {...props.panel}
-      />
-      <FormField
-        type="number"
-        param="depth"
-        method="panels.update"
-        {...props.panel}
-      />
-      <Box mb={1}>
-        <Flex>
+        <FormField
+          mr={1}
+          type="number"
+          param="depth"
+          method="panels.update"
+          {...props.panel}
+        />
+      </Flex>
+      <Box mt={3}>
+        <Flex mr={-1}>
           {axes.map(axis => (
             <Button
               key={axis}
               bg={axis === selectedAxis ? "blue" : "gray"}
               onClick={() => setSelectedAxis(axis)}
               mr={1}
+              width={1}
             >
               {axis}
             </Button>
