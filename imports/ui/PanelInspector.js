@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import FormField from "./FormField";
 import { Text, Heading, Button, Flex, Box } from "rebass";
+import FormField from "./FormField";
+import Inspector from "./Inspector";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const axes = ["x", "y", "z"];
 
@@ -9,7 +10,7 @@ const PanelInspector = props => {
   const [selectedAxis, setSelectedAxis] = useState(axes[0]);
 
   return (
-    <Box variant="card" mx={-4} my={1}>
+    <Inspector>
       <Box mb={1}>
         <FormField
           type="text"
@@ -24,27 +25,24 @@ const PanelInspector = props => {
           {...props.panel}
         />
       </Box>
-      <Box mb={1}>
-        <Text>Size</Text>
-        <FormField
-          type="number"
-          param="width"
-          method="panels.update"
-          {...props.panel}
-        />
-        <FormField
-          type="number"
-          param="height"
-          method="panels.update"
-          {...props.panel}
-        />
-        <FormField
-          type="number"
-          param="depth"
-          method="panels.update"
-          {...props.panel}
-        />
-      </Box>
+      <FormField
+        type="number"
+        param="width"
+        method="panels.update"
+        {...props.panel}
+      />
+      <FormField
+        type="number"
+        param="height"
+        method="panels.update"
+        {...props.panel}
+      />
+      <FormField
+        type="number"
+        param="depth"
+        method="panels.update"
+        {...props.panel}
+      />
       <Box mb={1}>
         <Flex>
           {axes.map(axis => (
@@ -71,16 +69,7 @@ const PanelInspector = props => {
           {...props.panel}
         />
       </Box>
-      <Button
-        onClick={() => {
-          if (window.confirm("Are you sure you want to delete this panel?")) {
-            Meteor.call("panels.delete", props.panel._id);
-          }
-        }}
-      >
-        Delete
-      </Button>
-    </Box>
+    </Inspector>
   );
 };
 

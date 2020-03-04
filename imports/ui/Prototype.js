@@ -84,7 +84,7 @@ const Prototype = props => {
               title="Panels"
               inspector={
                 <PanelInspector
-                  scene={panels.find(panel => panel._id === selectedPanelId)}
+                  panel={panels.find(panel => panel._id === selectedPanelId)}
                 />
               }
               items={panels}
