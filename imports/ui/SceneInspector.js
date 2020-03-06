@@ -18,7 +18,7 @@ const SceneInspector = props => (
         {...props.scene}
       />
     </Box>
-    <Box mb={1}>
+    <Box>
       <Label>Background</Label>
       <Select
         defaultValue={props.scene.background}

@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React from "react";
-import { Select } from "@rebass/forms";
+import { Select, Label } from "@rebass/forms";
 import Inspector from "./Inspector";
 
 const HotspotInspector = props => (
@@ -38,20 +38,23 @@ const HotspotInspector = props => (
       method="hotspots.update"
       {...props.hotspot}
     />
-    <Select
-      onChange={event =>
-        Meteor.call("hotspots.update", props.hotspot._id, {
-          link: event.target.value
-        })
-      }
-    >
-      <option value={null}>None</option>
-      {props.scenes.map(scene => (
-        <option key={scene._id} value={scene._id}>
-          {scene.name} {scene._id}
-        </option>
-      ))}
-    </Select>
+    <Box>
+      <Label>Target</Label>
+      <Select
+        onChange={event =>
+          Meteor.call("hotspots.update", props.hotspot._id, {
+            link: event.target.value
+          })
+        }
+      >
+        <option value={null}>None</option>
+        {props.scenes.map(scene => (
+          <option key={scene._id} value={scene._id}>
+            {scene.name} {scene._id}
+          </option>
+        ))}
+      </Select>
+    </Box>
   </Inspector>
 );
 
