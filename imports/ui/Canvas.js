@@ -26,8 +26,7 @@ const Canvas = props => (
         >
           <Entity
             geometry={{
-              primitive: "box",
-              depth: panel.depth,
+              primitive: "plane",
               height: panel.height,
               width: panel.width
             }}

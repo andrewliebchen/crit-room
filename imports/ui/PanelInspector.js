@@ -38,13 +38,6 @@ const PanelInspector = props => {
           method="panels.update"
           {...props.panel}
         />
-        <FormField
-          mr={1}
-          type="number"
-          param="depth"
-          method="panels.update"
-          {...props.panel}
-        />
       </Flex>
       <Box mt={3}>
         <Flex mr={-1}>

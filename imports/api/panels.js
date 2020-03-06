@@ -13,7 +13,6 @@ Meteor.methods({
       color: "",
       width: 2,
       height: 1,
-      depth: 0.1,
       xPosition: 0,
       xRotation: 0,
       yPosition: 0,

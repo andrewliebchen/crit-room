@@ -23,10 +23,6 @@ export const backgrounds = {
     name: "Boardwalk",
     src: "/boardwalk.jpg"
   },
-  desert: {
-    name: "Desert",
-    src: "/desert.jpg"
-  },
   forest: {
     name: "Forest",
     src: "/forest.jpg"
