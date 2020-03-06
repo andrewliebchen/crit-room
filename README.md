@@ -21,12 +21,13 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Scene environment params
 - ✅ Name for project
 - ✅ Hotspots on panels
-- ⬜️ Link hotspots
+- ✅ Link hotspots
 - ⬜️ Close/hide edit pane
-- ⬜️ URL params for scene and panels
+- ⬜️ URL params for scene
 - ⬜️ Position presets for near/mid/far
-- ⬜️ UI style
+- ✅ UI style
 - ⬜️ Landing page style
 - ⬜️ User accounts
 - ⬜️ View in VR buttons
-- ⬜️ Sidepanel navigation
+- ⬜️ More enviroments
+- ✅ Sidepanel navigation

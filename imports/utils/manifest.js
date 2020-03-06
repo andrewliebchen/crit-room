@@ -6,5 +6,65 @@ export const backgrounds = {
   dome: {
     name: "Dome",
     src: "/dome.png"
+  },
+  aurora: {
+    name: "Aurora",
+    src: "/aurora.jpg"
+  },
+  beach_1: {
+    name: "Beach 1",
+    src: "/beach_1.jpg"
+  },
+  beach_2: {
+    name: "Beach 2",
+    src: "/beach_2.jpg"
+  },
+  boardwalk: {
+    name: "Boardwalk",
+    src: "/boardwalk.jpg"
+  },
+  desert: {
+    name: "Desert",
+    src: "/desert.jpg"
+  },
+  forest: {
+    name: "Forest",
+    src: "/forest.jpg"
+  },
+  fort_mason: {
+    name: "Fort Mason",
+    src: "/fort_mason.jpg"
+  },
+  golden_gate_bridge: {
+    name: "Golden Gate Bridge",
+    src: "/golden_gate_bridge.jpg"
+  },
+  hilltop: {
+    name: "Hilltop",
+    src: "/hilltop.jpg"
+  },
+  lighthouse_sunset: {
+    name: "Lighthouse at sunset",
+    src: "/lighthouse_sunset.jpg"
+  },
+  monterrey: {
+    name: "Monterrey, CA",
+    src: "/monterrey.jpg"
+  },
+  mountain_top: {
+    name: "Mountain top",
+    src: "/mountain_top.jpg"
+  },
+  park: {
+    name: "Park",
+    src: "/park.jpg"
+  },
+  rocky_beach: {
+    name: "Rocky beach",
+    src: "/rocky_beach.jpg"
+  },
+  sunset: {
+    name: "Sunset",
+    src: "/sunset.jpg"
   }
 };
