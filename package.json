@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.6",
     "@rebass/forms": "^4.0.6",
+    "add": "^2.0.6",
     "aframe": "^1.0.3",
     "aframe-react": "^4.4.0",
     "jquery": "^3.4.1",
@@ -21,7 +22,8 @@
     "react-icons": "^3.9.0",
     "react-router-dom": "^5.1.2",
     "rebass": "^4.0.7",
-    "theme-ui": "^0.3.1"
+    "theme-ui": "^0.3.1",
+    "yarn": "^1.22.1"
   },
   "meteor": {
     "mainModule": {

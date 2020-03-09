@@ -1,3 +1,8 @@
 * {
   box-sizing: border-box;
 }
+
+.a-enter-vr {
+  position: fixed !important;
+  z-index: 1 !important;
+}

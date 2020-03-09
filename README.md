@@ -25,9 +25,11 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Close/hide edit pane
 - ⬜️ URL params for scene
 - ⬜️ Position presets for near/mid/far
+- ⬜️ Templates for Scenes (e.g. AUI)
 - ✅ UI style
 - ⬜️ Landing page style
 - ⬜️ User accounts
 - ⬜️ View in VR buttons
-- ⬜️ More enviroments
+- ✅ More environments
 - ✅ Sidepanel navigation
+- ⬜️ Upload images

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Canvas = props => (
-  <Scene>
+  <Scene vrModeUi={{ enabled: true }}>
     {props.scene && props.scene.background !== "none" && (
       <Entity primitive="a-sky" src={backgrounds[props.scene.background].src} />
     )}
