@@ -13,6 +13,7 @@
     "add": "^2.0.6",
     "aframe": "^1.0.3",
     "aframe-react": "^4.4.0",
+    "get-query-param": "^2.0.3",
     "jquery": "^3.4.1",
     "meteor-node-stubs": "^1.0.0",
     "prop-types": "^15.7.2",
@@ -23,6 +24,7 @@
     "react-router-dom": "^5.1.2",
     "rebass": "^4.0.7",
     "theme-ui": "^0.3.1",
+    "use-query-params": "^0.6.0",
     "yarn": "^1.22.1"
   },
   "meteor": {

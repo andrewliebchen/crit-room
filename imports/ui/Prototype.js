@@ -12,10 +12,16 @@ import React, { useState } from "react";
 import HotspotInspector from "./HotspotInspector";
 import SceneInspector from "./SceneInspector";
 import Pane from "./Pane";
+import { useQueryParam, StringParam } from "use-query-params";
+import getQueryParam from "get-query-param";
 
 const Prototype = props => {
+  const [sceneId, setSceneId] = useQueryParam("scene", StringParam);
+
   const [drilldownLevel, setDrilldownLevel] = useState(0);
-  const [selectedSceneId, setSelectedSceneId] = useState(null);
+  const [selectedSceneId, setSelectedSceneId] = useState(
+    getQueryParam("scene", window.location.href)
+  );
   const [selectedPanelId, setSelectedPanelId] = useState(null);
   const [selectedHotspotId, setSelectedHotspotId] = useState(null);
 
@@ -37,6 +43,7 @@ const Prototype = props => {
           hotspots={hotspots}
           onHotspotClick={sceneId => {
             setSelectedSceneId(sceneId);
+            setSceneId(sceneId);
             setSelectedPanelId(null);
             setSelectedHotspotId(null);
           }}
@@ -63,6 +70,7 @@ const Prototype = props => {
               {...props.prototype}
             />
           </Box> */}
+
           {drilldownLevel === 0 && (
             <Pane
               title="Scenes"
@@ -70,8 +78,9 @@ const Prototype = props => {
               items={props.scenes}
               onDrilldown={() => setDrilldownLevel(1)}
               onAdd={() => Meteor.call("scenes.create", props.prototype._id)}
-              onSelect={id => {
-                setSelectedSceneId(id);
+              onSelect={sceneId => {
+                setSelectedSceneId(sceneId);
+                setSceneId(sceneId);
                 setSelectedPanelId(null);
                 setSelectedHotspotId(null);
               }}

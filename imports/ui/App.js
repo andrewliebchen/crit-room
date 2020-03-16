@@ -6,12 +6,15 @@ import Prototype from "./Prototype";
 import PrototypesList from "./PrototypesList";
 import React from "react";
 import theme from "../utils/theme";
+import { QueryParamProvider } from "use-query-params";
 
 const App = props => (
   <ThemeProvider theme={theme}>
     <Router>
-      <Route path="/prototypes/:id" component={Prototype} />
-      <Route path="/" exact component={PrototypesList} />
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <Route path="/prototypes/:id" component={Prototype} />
+        <Route path="/" exact component={PrototypesList} />
+      </QueryParamProvider>
     </Router>
   </ThemeProvider>
 );
