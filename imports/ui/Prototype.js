@@ -1,19 +1,20 @@
-import { Flex, Box, Text, Heading } from "rebass";
+import { Flex, Box, Text, Heading, Button } from "rebass";
 import { Hotspots } from "../api/hotspots";
 import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
 import { Scenes } from "../api/scenes";
+import { useQueryParam, StringParam } from "use-query-params";
 import { withTracker } from "meteor/react-meteor-data";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
+import getQueryParam from "get-query-param";
+import HotspotInspector from "./HotspotInspector";
+import Pane from "./Pane";
 import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import HotspotInspector from "./HotspotInspector";
 import SceneInspector from "./SceneInspector";
-import Pane from "./Pane";
-import { useQueryParam, StringParam } from "use-query-params";
-import getQueryParam from "get-query-param";
+import { Sidebar, LogIn } from "react-feather";
 
 const Prototype = props => {
   const [sceneId, setSceneId] = useQueryParam("scene", StringParam);
@@ -136,6 +137,14 @@ const Prototype = props => {
               selectedItem={selectedHotspotId}
             />
           )}
+          <Flex alignItems="center" justifyContent="space-between" mt={3}>
+            <Button variant="icon" title="Hide">
+              <Sidebar />
+            </Button>
+            <Button variant="icon" title="Log in">
+              <LogIn />
+            </Button>
+          </Flex>
         </Box>
       </Flex>
     );
