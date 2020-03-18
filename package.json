@@ -2,7 +2,7 @@
   "name": "crit-room",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor --settings settings.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
@@ -13,6 +13,7 @@
     "add": "^2.0.6",
     "aframe": "^1.0.3",
     "aframe-react": "^4.4.0",
+    "bcrypt": "^4.0.1",
     "get-query-param": "^2.0.3",
     "jquery": "^3.4.1",
     "meteor-node-stubs": "^1.0.0",

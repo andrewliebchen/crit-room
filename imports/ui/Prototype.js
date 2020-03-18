@@ -14,7 +14,8 @@ import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SceneInspector from "./SceneInspector";
-import { Sidebar, LogIn } from "react-feather";
+import { Sidebar } from "react-feather";
+import Account from "./Account";
 
 const Prototype = props => {
   const [sceneId, setSceneId] = useQueryParam("scene", StringParam);
@@ -141,9 +142,7 @@ const Prototype = props => {
             <Button variant="icon" title="Hide">
               <Sidebar />
             </Button>
-            <Button variant="icon" title="Log in">
-              <LogIn />
-            </Button>
+            <Account {...props.user} />
           </Flex>
         </Box>
       </Flex>
@@ -157,8 +156,11 @@ Prototype.propTypes = {
   prototype: PropTypes.object,
   scenes: PropTypes.array,
   panels: PropTypes.array,
-  hotspots: PropTypes.array
+  hotspots: PropTypes.array,
+  user: PropTypes.object
 };
+
+// TODO: Move user data up to App.js
 
 export default withTracker(props => {
   const id = props.match.params.id;
@@ -166,6 +168,7 @@ export default withTracker(props => {
     prototype: Prototypes.findOne(id),
     scenes: Scenes.find({ prototypeId: id }).fetch(),
     panels: Panels.find({ prototypeId: id }).fetch(),
-    hotspots: Hotspots.find({ prototypeId: id }).fetch()
+    hotspots: Hotspots.find({ prototypeId: id }).fetch(),
+    user: Meteor.users.findOne({ _id: Meteor.userId() })
   };
 })(Prototype);
