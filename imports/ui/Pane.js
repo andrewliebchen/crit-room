@@ -8,13 +8,13 @@ const Pane = props => (
     <Flex alignItems="center" justifyContent="space-between" mb={3}>
       <Flex alignItems="center">
         {props.onDrillup && (
-          <Button variant="icon" mr={1} onClick={props.onDrillup}>
+          <Button variant="icon" mr={1} onClick={props.onDrillup} title="Back">
             <ChevronLeft />
           </Button>
         )}
         <Heading>{props.title}</Heading>
       </Flex>
-      <Button variant="icon" onClick={props.onAdd}>
+      <Button variant="icon" onClick={props.onAdd} title="Add">
         <Plus />
       </Button>
     </Flex>
@@ -35,7 +35,7 @@ const Pane = props => (
               <Text>{item.name}</Text>
               {isSelected && (
                 <Flex>
-                  <Button variant="icon" color="inherit">
+                  <Button variant="icon" color="inherit" title="Delete">
                     <Trash />
                   </Button>
                   {props.onDrilldown && (
@@ -43,6 +43,7 @@ const Pane = props => (
                       variant="icon"
                       color="inherit"
                       onClick={props.onDrilldown}
+                      title="Drilldown"
                     >
                       <ChevronRight />
                     </Button>
