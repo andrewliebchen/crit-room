@@ -35,13 +35,13 @@ const Pane = props => (
               <Text>{item.name}</Text>
               {isSelected && (
                 <Flex>
-                  <Button variant="icon" color="white">
+                  <Button variant="icon" color="inherit">
                     <Trash />
                   </Button>
                   {props.onDrilldown && (
                     <Button
                       variant="icon"
-                      color="white"
+                      color="inherit"
                       onClick={props.onDrilldown}
                     >
                       <ChevronRight />

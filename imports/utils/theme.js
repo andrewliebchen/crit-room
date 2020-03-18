@@ -22,7 +22,8 @@ export default {
     background: "#fff",
     primary: "blue",
     secondary: "purple",
-    muted: "rgba(0, 0, 0, 0.1)"
+    muted: "rgba(0, 0, 0, 0.1)",
+    hover: "rgba(0, 0, 0, 0.05)"
   },
   shadows: {
     card: "0 2px 10px rgba(0, 0, 0, 0.2)"
@@ -64,9 +65,23 @@ export default {
   },
   input: {
     borderRadius: 2,
+    bg: "muted",
+    borderColor: "transparent",
     "&:focus": {
       outline: "none",
-      borderColor: "primary"
+      borderColor: "primary",
+      bg: "white"
+    }
+  },
+  select: {
+    bg: "muted",
+    borderRadius: 2,
+    borderColor: "transparent",
+    pointer: "cursor",
+    "&:focus": {
+      outline: "none",
+      borderColor: "primary",
+      bg: "white"
     }
   },
   variants: {
@@ -80,7 +95,11 @@ export default {
       p: 2,
       mx: -2,
       borderRadius: 2,
-      cursor: "pointer"
+      cursor: "pointer",
+      "&:hover": {
+        bg: "hover",
+        color: "primary"
+      }
     }
   },
   styles: {
