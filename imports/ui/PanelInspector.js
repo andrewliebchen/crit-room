@@ -44,7 +44,7 @@ const PanelInspector = props => {
           {axes.map(axis => (
             <Button
               key={axis}
-              bg={axis === selectedAxis ? "blue" : "gray"}
+              variant={axis === selectedAxis ? "primary" : "secondary"}
               onClick={() => setSelectedAxis(axis)}
               mr={1}
               width={1}
