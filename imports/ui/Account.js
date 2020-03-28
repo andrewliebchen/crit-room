@@ -1,11 +1,17 @@
 import React from "react";
-import { Image, Box, Button } from "rebass";
+import { Image, Flex, Button } from "rebass";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { LogIn, LogOut } from "react-feather";
+import { LogIn, LogOut, User } from "react-feather";
+import { Link } from "react-router-dom";
 
 const Account = props => (
-  <Box>
+  <Flex>
+    <Link to="/profile">
+      <Button variant="icon" title="Profile" mr={1}>
+        <User />
+      </Button>
+    </Link>
     {Object.keys(props).length !== 0 ? (
       <Button
         variant="icon"
@@ -32,7 +38,7 @@ const Account = props => (
         <LogIn />
       </Button>
     )}
-  </Box>
+  </Flex>
 );
 
 Account.propTypes = {

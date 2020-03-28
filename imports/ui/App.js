@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { ThemeProvider } from "theme-ui";
 import Login from "./Login";
+import Profile from "./Profile";
 import Prototype from "./Prototype";
 import PrototypesList from "./PrototypesList";
 import React from "react";
@@ -13,6 +14,7 @@ const App = props => (
       <QueryParamProvider ReactRouterRoute={Route}>
         <Route path="/login" component={Login} />
         <Route path="/prototypes/:id" component={Prototype} />
+        <Route path="/profile" component={Profile} />
         <Route path="/" exact component={PrototypesList} />
       </QueryParamProvider>
     </Router>
