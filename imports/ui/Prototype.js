@@ -3,8 +3,10 @@ import { Hotspots } from "../api/hotspots";
 import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
 import { Scenes } from "../api/scenes";
+import { Sidebar } from "react-feather";
 import { useQueryParam, StringParam } from "use-query-params";
 import { withTracker } from "meteor/react-meteor-data";
+import Account from "./Account";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
 import getQueryParam from "get-query-param";
@@ -14,8 +16,6 @@ import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import SceneInspector from "./SceneInspector";
-import { Sidebar } from "react-feather";
-import Account from "./Account";
 
 const Prototype = props => {
   const [sceneId, setSceneId] = useQueryParam("scene", StringParam);
@@ -159,8 +159,6 @@ Prototype.propTypes = {
   hotspots: PropTypes.array,
   user: PropTypes.object
 };
-
-// TODO: Move user data up to App.js
 
 export default withTracker(props => {
   const id = props.match.params.id;

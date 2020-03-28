@@ -1,12 +1,14 @@
-import React from "react";
 import { Flex, Text, Box, Link, Button } from "rebass";
-import { withTracker } from "meteor/react-meteor-data";
-import { Prototypes } from "../api/prototypes";
 import { Meteor } from "meteor/meteor";
+import { Prototypes } from "../api/prototypes";
 import { Trash, Edit2 } from "react-feather";
+import { withTracker } from "meteor/react-meteor-data";
+import Account from "./Account";
+import React from "react";
 
 const PrototypesList = props => (
   <Box>
+    <Account {...props.user} />
     <Button onClick={() => Meteor.call("prototypes.create")}>
       Create prototype
     </Button>
@@ -32,6 +34,7 @@ const PrototypesList = props => (
 
 export default withTracker(() => {
   return {
-    prototypes: Prototypes.find({}).fetch()
+    prototypes: Prototypes.find({ createdBy: Meteor.userId() }).fetch(),
+    user: Meteor.users.findOne({ _id: Meteor.userId() })
   };
 })(PrototypesList);

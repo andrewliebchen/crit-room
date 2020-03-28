@@ -5,7 +5,8 @@ export const Prototypes = new Mongo.Collection("prototypes");
 Meteor.methods({
   "prototypes.create"() {
     Prototypes.insert({
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      createdBy: Meteor.userId()
     });
   },
 
