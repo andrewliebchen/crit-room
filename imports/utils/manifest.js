@@ -4,8 +4,12 @@ export const backgrounds = {
     src: ""
   },
   dome: {
-    name: "Dome",
-    src: "/dome.png"
+    name: "Oculus Dome",
+    src: "/oculus-dome.png"
+  },
+  store: {
+    name: "Oculus Store",
+    src: "/oculus_store.png"
   },
   aurora: {
     name: "Aurora",
