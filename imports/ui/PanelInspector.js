@@ -1,4 +1,5 @@
 import { Text, Heading, Button, Flex, Box } from "rebass";
+import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
 import Inspector from "./Inspector";
 import PropTypes from "prop-types";
@@ -23,22 +24,7 @@ const PanelInspector = props => {
         method="panels.update"
         {...props.panel}
       />
-      <Flex mr={-1}>
-        <FormField
-          mr={1}
-          type="number"
-          param="width"
-          method="panels.update"
-          {...props.panel}
-        />
-        <FormField
-          mr={1}
-          type="number"
-          param="height"
-          method="panels.update"
-          {...props.panel}
-        />
-      </Flex>
+      <DimensionInput {...props.panel} />
       <Box mt={3}>
         <Flex mr={-1}>
           {axes.map(axis => (

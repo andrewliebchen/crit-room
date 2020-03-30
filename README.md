@@ -28,8 +28,9 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Templates for Scenes (e.g. AUI)
 - ✅ UI style
 - ⬜️ Landing page style
+- ⬜️ Allow users to delete their accounts
 - ✅ User accounts
-- ⬜️ Profile page
+- ✅ Profile page
 - ✅ View in VR buttons
 - ✅ More environments
 - ✅ Sidepanel navigation

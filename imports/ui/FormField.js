@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Box, Text } from "rebass";
 import { Input, Label } from "@rebass/forms";
 import PropTypes from "prop-types";
+import { Meteor } from "meteor/meteor";
 
 const FormField = props => (
   <Box mr={props.mr}>
