@@ -15,6 +15,15 @@ const FormField = props => (
           let args = {};
           args[props.param] = event.target.value;
           Meteor.call(props.method, props._id, args);
+
+          if (props.type === "url") {
+            let img = new Image();
+            img.onload = function() {
+              console.log(img.width);
+              console.log(img.height);
+            };
+            img.src = event.target.value;
+          }
         }}
       />
     </Flex>
