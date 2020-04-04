@@ -21,6 +21,7 @@
     "react-feather": "^2.0.3",
     "react-icons": "^3.9.0",
     "react-router-dom": "^5.1.2",
+    "react-timeago": "^4.4.0",
     "rebass": "^4.0.7",
     "theme-ui": "^0.3.1",
     "use-query-params": "^0.6.0",

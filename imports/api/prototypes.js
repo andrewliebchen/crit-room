@@ -6,7 +6,8 @@ Meteor.methods({
   "prototypes.create"() {
     Prototypes.insert({
       createdAt: Date.now(),
-      createdBy: Meteor.userId()
+      createdBy: Meteor.userId(),
+      name: "Untitled Prototype"
     });
   },
 
