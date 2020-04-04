@@ -4,11 +4,11 @@ export const Scenes = new Mongo.Collection("scenes");
 
 Meteor.methods({
   "scenes.create"(prototypeId) {
-    Scenes.insert({
+    return Scenes.insert({
       createdAt: Date.now(),
       prototypeId: prototypeId,
-      name: "Scene",
-      background: "none"
+      name: "Untitled Scene",
+      background: "dome"
     });
   },
 

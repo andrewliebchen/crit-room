@@ -1,53 +1,122 @@
-import { Flex, Box, Text, Heading, Button } from "rebass";
+import { Flex, Box, Text, Button } from "rebass";
 import { Hotspots } from "../api/hotspots";
 import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
 import { Scenes } from "../api/scenes";
 import { Sidebar } from "react-feather";
-import { useQueryParam, StringParam } from "use-query-params";
+import { useQueryParams, StringParam } from "use-query-params";
 import { withTracker } from "meteor/react-meteor-data";
 import Account from "./Account";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
-import getQueryParam from "get-query-param";
 import HotspotInspector from "./HotspotInspector";
 import Pane from "./Pane";
 import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import SceneInspector from "./SceneInspector";
 
 const Prototype = props => {
-  const [sceneId, setSceneId] = useQueryParam("scene", StringParam);
-
-  const [drilldownLevel, setDrilldownLevel] = useState(0);
-  const [selectedSceneId, setSelectedSceneId] = useState(
-    getQueryParam("scene", window.location.href)
-  );
-  const [selectedPanelId, setSelectedPanelId] = useState(null);
-  const [selectedHotspotId, setSelectedHotspotId] = useState(null);
+  const [query, setQuery] = useQueryParams({
+    scene: StringParam,
+    panel: StringParam,
+    hotspot: StringParam
+  });
 
   if (props.prototype) {
-    const scene = props.scenes.find(scene => scene._id === selectedSceneId);
-    const panels = props.panels.filter(
-      panel => panel.sceneId === selectedSceneId
-    );
+    const scene = props.scenes.find(scene => scene._id === query.scene);
+    const panels = props.panels.filter(panel => panel.sceneId === query.scene);
     const hotspots = props.hotspots.filter(
-      hotspot => hotspot.panelId === selectedPanelId
+      hotspot => hotspot.panelId === query.panel
+    );
+
+    const scenePane = (
+      <Pane
+        title="Scenes"
+        inspector={<SceneInspector scene={scene} />}
+        items={props.scenes}
+        onDrilldown={() =>
+          setQuery({ panel: panels.length > 0 ? panels[0]._id : null })
+        }
+        onAdd={() =>
+          Meteor.call("scenes.create", props.prototype._id, (err, id) =>
+            setQuery({ scene: id })
+          )
+        }
+        onSelect={sceneId =>
+          setQuery({
+            scene: sceneId
+          })
+        }
+        selectedItem={query.scene}
+      />
+    );
+
+    const panelPane = (
+      <Pane
+        title="Panels"
+        inspector={
+          <PanelInspector
+            panel={panels.find(panel => panel._id === query.panel)}
+          />
+        }
+        items={panels}
+        onAdd={() =>
+          Meteor.call(
+            "panels.create",
+            props.prototype._id,
+            query.scene,
+            (err, id) => setQuery({ panel: id })
+          )
+        }
+        onDrillup={() => setQuery({ panel: null })}
+        onDrilldown={() =>
+          setQuery({ hotspot: hotspots.length > 0 ? hotspots[0]._id : null })
+        }
+        onSelect={id =>
+          setQuery({
+            panel: id
+          })
+        }
+        selectedItem={query.panel}
+      />
+    );
+
+    const hotspotPane = (
+      <Pane
+        title="Hotspots"
+        inspector={
+          <HotspotInspector
+            hotspot={props.hotspots.find(
+              hotspot => hotspot._id === query.hotspot
+            )}
+            scenes={props.scenes}
+          />
+        }
+        items={hotspots}
+        onAdd={() =>
+          Meteor.call(
+            "hotspots.create",
+            props.prototype._id,
+            query.panel,
+            (err, id) => setQuery({ hotspot: id })
+          )
+        }
+        onDrillup={() => setQuery({ hotspot: null })}
+        onSelect={id => setQuery({ hotspot: id })}
+        selectedItem={query.hotspot}
+      />
     );
 
     return (
       <Flex>
         <Canvas
           scene={scene}
-          selectedPanelId={selectedPanelId}
+          selectedPanelId={query.panel}
           panels={panels}
           hotspots={hotspots}
           onHotspotClick={sceneId => {
-            setSelectedSceneId(sceneId);
-            setSceneId(sceneId);
-            setSelectedPanelId(null);
-            setSelectedHotspotId(null);
+            setQuery({ scene: sceneId, panel: null, hotspot: null });
           }}
         />
         <Box
@@ -62,82 +131,11 @@ const Prototype = props => {
             userSelect: "none"
           }}
         >
-          {/* <Box mb={3}>
-            <Heading>Prototype info</Heading>
-            <Text>ID: {props.prototype._id}</Text>
-            <FormField
-              param="name"
-              type="text"
-              method="prototypes.update"
-              {...props.prototype}
-            />
-          </Box> */}
-
-          {drilldownLevel === 0 && (
-            <Pane
-              title="Scenes"
-              inspector={<SceneInspector scene={scene} />}
-              items={props.scenes}
-              onDrilldown={() => setDrilldownLevel(1)}
-              onAdd={() => Meteor.call("scenes.create", props.prototype._id)}
-              onSelect={sceneId => {
-                setSelectedSceneId(sceneId);
-                setSceneId(sceneId);
-                setSelectedPanelId(null);
-                setSelectedHotspotId(null);
-              }}
-              selectedItem={selectedSceneId}
-            />
-          )}
-          {drilldownLevel === 1 && (
-            <Pane
-              title="Panels"
-              inspector={
-                <PanelInspector
-                  panel={panels.find(panel => panel._id === selectedPanelId)}
-                />
-              }
-              items={panels}
-              onAdd={() =>
-                Meteor.call(
-                  "panels.create",
-                  props.prototype._id,
-                  selectedSceneId
-                )
-              }
-              onDrillup={() => setDrilldownLevel(0)}
-              onDrilldown={() => setDrilldownLevel(2)}
-              onSelect={id => {
-                setSelectedPanelId(id);
-                setSelectedHotspotId(null);
-              }}
-              selectedItem={selectedPanelId}
-            />
-          )}
-          {drilldownLevel === 2 && (
-            <Pane
-              title="Hotspots"
-              inspector={
-                <HotspotInspector
-                  hotspot={props.hotspots.find(
-                    hotspot => hotspot._id === selectedHotspotId
-                  )}
-                  scenes={props.scenes}
-                />
-              }
-              items={hotspots}
-              onAdd={() =>
-                Meteor.call(
-                  "hotspots.create",
-                  props.prototype._id,
-                  selectedPanelId
-                )
-              }
-              onDrillup={() => setDrilldownLevel(1)}
-              onSelect={id => setSelectedHotspotId(id)}
-              selectedItem={selectedHotspotId}
-            />
-          )}
+          {typeof query.hotspot !== "undefined"
+            ? hotspotPane
+            : typeof query.panel !== "undefined"
+            ? panelPane
+            : scenePane}
           <Flex alignItems="center" justifyContent="space-between" mt={3}>
             <Button variant="icon" title="Hide">
               <Sidebar />

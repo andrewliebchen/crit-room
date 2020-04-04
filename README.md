@@ -35,8 +35,12 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ More environments
 - ✅ Sidepanel navigation
 - ⬜️ Upload images
-- ⬜️ Auto-select first thing in list
+- ✅ Auto-select first thing in list
 - ✅ Proportional resizing
 - ⬜️ Curvature
 - ⬜️ Set size of panel based on size of image
 - ✅ Oculus environments
+- ⬜️ Panel dimensions can either be scaled or number input
+- ✅ Select a scene/panel/hotspot once it's created
+- ✅ Get rid of drilldownLevel
+- ⬜️ auto create child element

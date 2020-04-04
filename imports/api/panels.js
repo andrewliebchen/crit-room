@@ -4,11 +4,11 @@ export const Panels = new Mongo.Collection("panels");
 
 Meteor.methods({
   "panels.create"(prototypeId, sceneId) {
-    Panels.insert({
+    return Panels.insert({
       createdAt: Date.now(),
       prototypeId: prototypeId,
       sceneId: sceneId,
-      name: "Panel",
+      name: "Untitled Panel",
       src: "",
       color: "",
       width: 2,

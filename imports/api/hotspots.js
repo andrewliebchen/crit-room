@@ -4,7 +4,7 @@ export const Hotspots = new Mongo.Collection("hotspots");
 
 Meteor.methods({
   "hotspots.create"(prototypeId, panelId) {
-    Hotspots.insert({
+    return Hotspots.insert({
       createdAt: Date.now(),
       prototypeId: prototypeId,
       panelId: panelId,
@@ -13,7 +13,7 @@ Meteor.methods({
       x: 0,
       y: 0,
       target: null,
-      name: "Hotspot"
+      name: "Untitled Hotspot"
     });
   },
 
