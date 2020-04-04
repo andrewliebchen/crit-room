@@ -109,18 +109,20 @@ const Prototype = props => {
         selectedItem={query.hotspot}
       />
     );
-
+    // Make the interaction pattern more like the inspector
     return (
       <Flex>
-        <Canvas
-          scene={scene}
-          selectedPanelId={query.panel}
-          panels={panels}
-          hotspots={hotspots}
-          onHotspotClick={sceneId => {
-            setQuery({ scene: sceneId, panel: null, hotspot: null });
-          }}
-        />
+        {typeof query.scene !== "undefined" && (
+          <Canvas
+            scene={scene}
+            selectedPanelId={query.panel}
+            panels={panels}
+            hotspots={hotspots}
+            onHotspotClick={sceneId => {
+              setQuery({ scene: sceneId, panel: null, hotspot: null });
+            }}
+          />
+        )}
         <Box
           variant="card"
           width={query.hideSidebar || 300}
