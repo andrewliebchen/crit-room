@@ -34,8 +34,8 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Select a scene/panel/hotspot once it's created
 - ✅ Get rid of drilldownLevel
 - ✅ auto create child elements
+- ✅ Close/hide edit pane
 - ⬜️ Scene environment params
-- ⬜️ Close/hide edit pane
 - ⬜️ Position presets for near/mid/far
 - ⬜️ Templates for Scenes (e.g. AUI)
 - ⬜️ Landing page style

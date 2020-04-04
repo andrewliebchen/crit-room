@@ -4,7 +4,7 @@ import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
 import { Scenes } from "../api/scenes";
 import { Sidebar } from "react-feather";
-import { useQueryParams, StringParam } from "use-query-params";
+import { useQueryParams, BooleanParam, StringParam } from "use-query-params";
 import { withTracker } from "meteor/react-meteor-data";
 import Account from "./Account";
 import Canvas from "./Canvas";
@@ -20,7 +20,8 @@ const Prototype = props => {
   const [query, setQuery] = useQueryParams({
     scene: StringParam,
     panel: StringParam,
-    hotspot: StringParam
+    hotspot: StringParam,
+    hideSidebar: BooleanParam
   });
 
   if (props.prototype) {
@@ -121,7 +122,7 @@ const Prototype = props => {
         />
         <Box
           variant="card"
-          width={300}
+          width={query.hideSidebar || 300}
           sx={{
             position: "fixed",
             zIndex: 1,
@@ -131,13 +132,22 @@ const Prototype = props => {
             userSelect: "none"
           }}
         >
-          {typeof query.hotspot !== "undefined"
-            ? hotspotPane
-            : typeof query.panel !== "undefined"
-            ? panelPane
-            : scenePane}
-          <Flex alignItems="center" justifyContent="space-between" mt={3}>
-            <Button variant="icon" title="Hide">
+          {query.hideSidebar || (
+            <Box mb={3}>
+              {typeof query.hotspot !== "undefined"
+                ? hotspotPane
+                : typeof query.panel !== "undefined"
+                ? panelPane
+                : scenePane}
+            </Box>
+          )}
+          <Flex alignItems="center" justifyContent="space-between">
+            <Button
+              variant="icon"
+              title="Hide"
+              mr={3}
+              onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
+            >
               <Sidebar />
             </Button>
             <Account {...props.user} />

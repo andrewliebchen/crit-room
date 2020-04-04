@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Box, Flex, Heading, Link, Text } from "rebass";
-import { Plus, ChevronLeft, ChevronRight, Trash } from "react-feather";
+import { Plus, Trash, ArrowLeft, ArrowRight } from "react-feather";
 import PropTypes from "prop-types";
 
 const Pane = props => (
@@ -9,7 +9,7 @@ const Pane = props => (
       <Flex alignItems="center">
         {props.onDrillup && (
           <Button variant="icon" mr={1} onClick={props.onDrillup} title="Back">
-            <ChevronLeft />
+            <ArrowLeft />
           </Button>
         )}
         <Heading>{props.title}</Heading>
@@ -45,7 +45,7 @@ const Pane = props => (
                       onClick={props.onDrilldown}
                       title="Drilldown"
                     >
-                      <ChevronRight />
+                      <ArrowRight />
                     </Button>
                   )}
                 </Flex>
