@@ -39,3 +39,4 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Proportional resizing
 - ⬜️ Curvature
 - ⬜️ Set size of panel based on size of image
+- ✅ Oculus environments
