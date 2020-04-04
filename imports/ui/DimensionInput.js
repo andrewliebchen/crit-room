@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Meteor } from "meteor/meteor";
-import { scale } from "proportional-scale";
 import { Box, Flex, Button } from "rebass";
 import { Input, Label } from "@rebass/forms";
-import PropTypes from "prop-types";
 import { Lock, Unlock } from "react-feather";
+import { Meteor } from "meteor/meteor";
+import { scale } from "proportional-scale";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const DimensionInput = props => {
   const [proportional, setProportional] = useState(false);
@@ -16,8 +16,18 @@ const DimensionInput = props => {
         <Flex>
           <Input
             type="number"
-            defaultValue={props.width}
-            onChange={event => console.log(event.target.value)}
+            value={props.width}
+            onChange={event => {
+              const { width, height } = scale({
+                width: props.width,
+                height: props.height,
+                maxWidth: event.target.value
+              });
+              Meteor.call("panels.update", props._id, {
+                width: width,
+                height: proportional ? height : props.height
+              });
+            }}
           />
         </Flex>
       </Box>
@@ -26,14 +36,17 @@ const DimensionInput = props => {
         <Flex>
           <Input
             type="number"
-            defaultValue={props.height}
+            value={props.height}
             onChange={event => {
               const { width, height } = scale({
                 width: props.width,
                 height: props.height,
                 maxHeight: event.target.value
               });
-              console.log(proportional && width);
+              Meteor.call("panels.update", props._id, {
+                height: height,
+                width: proportional ? width : props.width
+              });
             }}
           />
           <Button
@@ -51,7 +64,8 @@ const DimensionInput = props => {
 
 DimensionInput.propTypes = {
   width: PropTypes.number,
-  height: PropTypes.number
+  height: PropTypes.number,
+  _id: PropTypes.string
 };
 
 export default DimensionInput;

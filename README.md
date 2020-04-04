@@ -36,6 +36,6 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Sidepanel navigation
 - ⬜️ Upload images
 - ⬜️ Auto-select first thing in list
-- ⬜️ Proportional resizing
+- ✅ Proportional resizing
 - ⬜️ Curvature
 - ⬜️ Set size of panel based on size of image
