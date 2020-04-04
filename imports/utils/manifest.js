@@ -4,67 +4,39 @@ export const backgrounds = {
     src: ""
   },
   dome: {
-    name: "Oculus Dome",
-    src: "/oculus-dome.png"
+    name: "Dome",
+    src: "/oculus_dome.jpg"
   },
-  store: {
-    name: "Oculus Store",
-    src: "/oculus_store.png"
+  courtyard: {
+    name: "Courtyard",
+    src: "/oculus_courtyard.jpg"
   },
-  aurora: {
-    name: "Aurora",
-    src: "/aurora.jpg"
+  office: {
+    name: "Office",
+    src: "/oculus_office.jpg"
   },
-  beach_1: {
-    name: "Beach 1",
-    src: "/beach_1.jpg"
+  delmar: {
+    name: "Delmar",
+    src: "/oculus_delmar.jpg"
   },
-  beach_2: {
-    name: "Beach 2",
-    src: "/beach_2.jpg"
+  lodge: {
+    name: "Lodge",
+    src: "/oculus_lodge.jpg"
   },
-  boardwalk: {
-    name: "Boardwalk",
-    src: "/boardwalk.jpg"
+  monolith: {
+    name: "Monolith",
+    src: "/oculus_monolith.jpg"
   },
-  forest: {
-    name: "Forest",
-    src: "/forest.jpg"
+  office: {
+    name: "Office",
+    src: "/oculus_office.jpg"
   },
-  fort_mason: {
-    name: "Fort Mason",
-    src: "/fort_mason.jpg"
+  rift_home: {
+    name: "Rift Home",
+    src: "/oculus_rift_home.jpg"
   },
-  golden_gate_bridge: {
-    name: "Golden Gate Bridge",
-    src: "/golden_gate_bridge.jpg"
-  },
-  hilltop: {
-    name: "Hilltop",
-    src: "/hilltop.jpg"
-  },
-  lighthouse_sunset: {
-    name: "Lighthouse at sunset",
-    src: "/lighthouse_sunset.jpg"
-  },
-  monterrey: {
-    name: "Monterrey, CA",
-    src: "/monterrey.jpg"
-  },
-  mountain_top: {
-    name: "Mountain top",
-    src: "/mountain_top.jpg"
-  },
-  park: {
-    name: "Park",
-    src: "/park.jpg"
-  },
-  rocky_beach: {
-    name: "Rocky beach",
-    src: "/rocky_beach.jpg"
-  },
-  sunset: {
-    name: "Sunset",
-    src: "/sunset.jpg"
+  scifi: {
+    name: "Space Station",
+    src: "/oculus_scifi.jpg"
   }
 };
