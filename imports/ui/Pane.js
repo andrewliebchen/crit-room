@@ -19,7 +19,7 @@ const Pane = props => (
       </Button>
     </Flex>
 
-    {props.items.length > 0 &&
+    {props.items.length > 0 ? (
       props.items.map(item => {
         const isSelected = props.selectedItem === item._id;
         return (
@@ -35,9 +35,6 @@ const Pane = props => (
               <Text>{item.name}</Text>
               {isSelected && (
                 <Flex>
-                  <Button variant="icon" color="inherit" title="Delete">
-                    <Trash />
-                  </Button>
                   {props.onDrilldown && (
                     <Button
                       variant="icon"
@@ -54,7 +51,12 @@ const Pane = props => (
             {isSelected && props.inspector}
           </Box>
         );
-      })}
+      })
+    ) : (
+      <Flex justifyContent="center">
+        <Text color="secondaryText">Nothing yet</Text>
+      </Flex>
+    )}
   </Box>
 );
 

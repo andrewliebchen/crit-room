@@ -19,6 +19,8 @@ export default {
   },
   colors: {
     text: "#000",
+    secondaryText: "#CCC",
+    negative: "red",
     background: "#fff",
     primary: "blue",
     secondary: "purple",

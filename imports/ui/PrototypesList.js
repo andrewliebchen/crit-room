@@ -41,28 +41,16 @@ const PrototypesList = props => (
               Created <TimeAgo date={prototype.createdAt} />
             </Text>
           </Flex>
-          <Flex>
-            <Button
-              variant="icon"
-              title="Edit"
-              onClick={event => {
-                event.stopPropagation();
-                console.log("Edit");
-              }}
-            >
-              <Settings />
-            </Button>
-            <Button
-              variant="icon"
-              title="Delete"
-              onClick={() => {
-                event.stopPropagation();
-                Meteor.call("prototypes.delete", prototype._id);
-              }}
-            >
-              <Trash />
-            </Button>
-          </Flex>
+          <Button
+            variant="icon"
+            title="Edit"
+            onClick={event => {
+              event.stopPropagation();
+              console.log("Edit");
+            }}
+          >
+            <Settings />
+          </Button>
         </Flex>
       ))
     ) : (

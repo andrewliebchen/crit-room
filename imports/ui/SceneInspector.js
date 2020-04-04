@@ -10,14 +10,12 @@ import React from "react";
 
 const SceneInspector = props => (
   <Inspector>
-    <Box mb={1}>
-      <FormField
-        type="text"
-        param="name"
-        method="scenes.update"
-        {...props.scene}
-      />
-    </Box>
+    <FormField
+      type="text"
+      param="name"
+      method="scenes.update"
+      {...props.scene}
+    />
     <Box>
       <Label>Background</Label>
       <Select
@@ -35,6 +33,19 @@ const SceneInspector = props => (
         ))}
       </Select>
     </Box>
+    <Button
+      width={1}
+      mt={3}
+      variant="secondary"
+      color="negative"
+      onClick={() => {
+        if (window.confirm("Are you sure you want to delete this scene?")) {
+          Meteor.call("scenes.delete", props.scene._id);
+        }
+      }}
+    >
+      Delete
+    </Button>
   </Inspector>
 );
 

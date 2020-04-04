@@ -36,6 +36,7 @@ const Prototype = props => {
         title="Scenes"
         inspector={<SceneInspector scene={scene} />}
         items={props.scenes}
+        onDrillup={() => (window.location.href = "/")}
         onDrilldown={() =>
           setQuery({ panel: panels.length > 0 ? panels[0]._id : null })
         }

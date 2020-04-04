@@ -52,6 +52,19 @@ const PanelInspector = props => {
           {...props.panel}
         />
       </Box>
+      <Button
+        width={1}
+        mt={3}
+        variant="secondary"
+        color="negative"
+        onClick={() => {
+          if (window.confirm("Are you sure you want to delete this panel?")) {
+            Meteor.call("panels.delete", props.panel._id);
+          }
+        }}
+      >
+        Delete
+      </Button>
     </Inspector>
   );
 };

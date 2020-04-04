@@ -35,10 +35,10 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Get rid of drilldownLevel
 - ✅ auto create child elements
 - ✅ Close/hide edit pane
+- ✅ Landing page style
 - ⬜️ Scene environment params
 - ⬜️ Position presets for near/mid/far
 - ⬜️ Templates for Scenes (e.g. AUI)
-- ⬜️ Landing page style
 - ⬜️ Allow users to delete their accounts
 - ⬜️ Upload images
 - ⬜️ Curvature

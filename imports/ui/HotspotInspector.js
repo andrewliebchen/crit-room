@@ -1,4 +1,4 @@
-import { Box, Button, Text, Heading } from "rebass";
+import { Box, Button, Text, Heading, Flex } from "rebass";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
@@ -14,31 +14,7 @@ const HotspotInspector = props => (
       method="hotspots.update"
       {...props.hotspot}
     />
-    <FormField
-      type="number"
-      param="width"
-      method="hotspots.update"
-      {...props.hotspot}
-    />
-    <FormField
-      type="number"
-      param="height"
-      method="hotspots.update"
-      {...props.hotspot}
-    />
-    <FormField
-      type="number"
-      param="x"
-      method="hotspots.update"
-      {...props.hotspot}
-    />
-    <FormField
-      type="number"
-      param="y"
-      method="hotspots.update"
-      {...props.hotspot}
-    />
-    <Box>
+    <Box mb={3}>
       <Label>Target</Label>
       <Select
         onChange={event =>
@@ -55,6 +31,51 @@ const HotspotInspector = props => (
         ))}
       </Select>
     </Box>
+    <Flex mr={-1}>
+      <FormField
+        type="number"
+        mr={1}
+        param="width"
+        method="hotspots.update"
+        {...props.hotspot}
+      />
+      <FormField
+        type="number"
+        mr={1}
+        param="height"
+        method="hotspots.update"
+        {...props.hotspot}
+      />
+    </Flex>
+    <Flex mr={-1}>
+      <FormField
+        type="number"
+        mr={1}
+        param="x"
+        method="hotspots.update"
+        {...props.hotspot}
+      />
+      <FormField
+        type="number"
+        mr={1}
+        param="y"
+        method="hotspots.update"
+        {...props.hotspot}
+      />
+    </Flex>
+    <Button
+      width={1}
+      mt={3}
+      variant="secondary"
+      color="negative"
+      onClick={() => {
+        if (window.confirm("Are you sure you want to delete this hotspot?")) {
+          Meteor.call("hotspot.delete", props.hotspot._id);
+        }
+      }}
+    >
+      Delete
+    </Button>
   </Inspector>
 );
 
