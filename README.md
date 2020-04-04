@@ -33,6 +33,7 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Oculus environments
 - ✅ Select a scene/panel/hotspot once it's created
 - ✅ Get rid of drilldownLevel
+- ✅ auto create child elements
 - ⬜️ Scene environment params
 - ⬜️ Close/hide edit pane
 - ⬜️ Position presets for near/mid/far
@@ -43,4 +44,4 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Curvature
 - ⬜️ Set size of panel based on size of image
 - ⬜️ Panel dimensions can either be scaled or number input
-- ⬜️ auto create child element
+- ⬜️ Don't allow drilldown if the element doesn't have children

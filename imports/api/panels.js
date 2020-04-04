@@ -1,10 +1,11 @@
 import { Mongo } from "meteor/mongo";
+import { Meteor } from "meteor/meteor";
 
 export const Panels = new Mongo.Collection("panels");
 
 Meteor.methods({
   "panels.create"(prototypeId, sceneId) {
-    return Panels.insert({
+    const panelId = Panels.insert({
       createdAt: Date.now(),
       prototypeId: prototypeId,
       sceneId: sceneId,
@@ -20,6 +21,15 @@ Meteor.methods({
       zPosition: -5,
       zRotation: 0
     });
+
+    // Create the panel
+    panelId;
+
+    // Create a hotspot
+    Meteor.call("hotspots.create", prototypeId, panelId);
+
+    // Return the panel id
+    return panelId;
   },
 
   "panels.delete"(id) {
