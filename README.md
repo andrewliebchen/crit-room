@@ -36,6 +36,7 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ auto create child elements
 - ✅ Close/hide edit pane
 - ✅ Landing page style
+- ✅ Fix axis position selector
 - ⬜️ Scene environment params
 - ⬜️ Position presets for near/mid/far
 - ⬜️ Templates for Scenes (e.g. AUI)
@@ -45,3 +46,4 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Set size of panel based on size of image
 - ⬜️ Panel dimensions can either be scaled or number input
 - ⬜️ Don't allow drilldown if the element doesn't have children
+- ⬜️ 3D axis icons for button group

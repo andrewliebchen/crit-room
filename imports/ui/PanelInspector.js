@@ -7,6 +7,23 @@ import React, { useState } from "react";
 
 const axes = ["x", "y", "z"];
 
+const PositionFields = props => (
+  <Box>
+    <FormField
+      type="number"
+      param={`${props.axis}Position`}
+      method="panels.update"
+      {...props.panel}
+    />
+    <FormField
+      type="number"
+      param={`${props.axis}Rotation`}
+      method="panels.update"
+      {...props.panel}
+    />
+  </Box>
+);
+
 const PanelInspector = props => {
   const [selectedAxis, setSelectedAxis] = useState(axes[0]);
 
@@ -39,18 +56,15 @@ const PanelInspector = props => {
             </Button>
           ))}
         </Flex>
-        <FormField
-          type="number"
-          param={`${selectedAxis}Position`}
-          method="panels.update"
-          {...props.panel}
-        />
-        <FormField
-          type="number"
-          param={`${selectedAxis}Rotation`}
-          method="panels.update"
-          {...props.panel}
-        />
+        {selectedAxis === axes[0] && (
+          <PositionFields axis={axes[0]} {...props} />
+        )}
+        {selectedAxis === axes[1] && (
+          <PositionFields axis={axes[1]} {...props} />
+        )}
+        {selectedAxis === axes[2] && (
+          <PositionFields axis={axes[0]} {...props} />
+        )}
       </Box>
       <Button
         width={1}
