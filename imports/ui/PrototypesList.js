@@ -1,13 +1,13 @@
-import { Flex, Text, Box, Link, Button, Heading } from "rebass";
+import { Flex, Text, Box, Button, Heading } from "rebass";
 import { Meteor } from "meteor/meteor";
+import { Plus, ArrowRight } from "react-feather";
 import { Prototypes } from "../api/prototypes";
-import { Trash, Edit2, Plus, Settings, X } from "react-feather";
 import { withTracker } from "meteor/react-meteor-data";
 import Account from "./Account";
+import FormField from "./FormField";
+import Inspector from "./Inspector";
 import React, { useState } from "react";
 import TimeAgo from "react-timeago";
-import Inspector from "./Inspector";
-import FormField from "./FormField";
 
 const PrototypesList = props => {
   const [selectedPrototype, setSelectedPrototype] = useState(null);
@@ -38,7 +38,7 @@ const PrototypesList = props => {
                 alignItems="center"
                 justifyContent="space-between"
                 onClick={() =>
-                  (window.location.href = `/prototypes/${prototype._id}`)
+                  setSelectedPrototype(selectedPrototype ? null : prototype._id)
                 }
               >
                 <Flex>
@@ -49,29 +49,16 @@ const PrototypesList = props => {
                     Created <TimeAgo date={prototype.createdAt} />
                   </Text>
                 </Flex>
-                {selectedPrototype === prototype._id ? (
-                  <Button
-                    variant="icon"
-                    title="close"
-                    onClick={() => {
-                      event.stopPropagation();
-                      setSelectedPrototype(null);
-                    }}
-                  >
-                    <X />
-                  </Button>
-                ) : (
-                  <Button
-                    variant="icon"
-                    title="Edit"
-                    onClick={event => {
-                      event.stopPropagation();
-                      setSelectedPrototype(prototype._id);
-                    }}
-                  >
-                    <Settings />
-                  </Button>
-                )}
+                <Button
+                  variant="icon"
+                  title="View prototype"
+                  onClick={event => {
+                    event.stopPropagation();
+                    window.location.href = `/prototypes/${prototype._id}`;
+                  }}
+                >
+                  <ArrowRight />
+                </Button>
               </Flex>
               {selectedPrototype === prototype._id && (
                 <Inspector>
@@ -86,15 +73,11 @@ const PrototypesList = props => {
                     mt={3}
                     variant="secondary"
                     color="negative"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          "Are you sure you want to delete this prototype?"
-                        )
-                      ) {
-                        Meteor.call("prototypes.delete", prototype._id);
-                      }
-                    }}
+                    onClick={() =>
+                      window.confirm(
+                        "Are you sure you want to delete this prototype?"
+                      ) && Meteor.call("prototypes.delete", prototype._id)
+                    }
                   >
                     Delete
                   </Button>

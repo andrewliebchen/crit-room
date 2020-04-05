@@ -109,10 +109,10 @@ const Prototype = props => {
         selectedItem={query.hotspot}
       />
     );
-    // Make the interaction pattern more like the inspector
+
     return (
       <Flex>
-        {typeof query.scene !== "undefined" && (
+        {typeof query.scene !== "undefined" ? (
           <Canvas
             scene={scene}
             selectedPanelId={query.panel}
@@ -122,6 +122,14 @@ const Prototype = props => {
               setQuery({ scene: sceneId, panel: null, hotspot: null });
             }}
           />
+        ) : (
+          <Flex
+            sx={{ height: "100vh", width: "100vw" }}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="secondaryText">Select a Scene to get Started</Text>
+          </Flex>
         )}
         <Box
           variant="card"
