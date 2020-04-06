@@ -8,20 +8,22 @@ import React, { useState } from "react";
 const axes = ["x", "y", "z"];
 
 const PositionFields = props => (
-  <Box>
+  <Flex mr={-1}>
     <FormField
       type="number"
+      mr={1}
       param={`${props.axis}Position`}
       method="panels.update"
       {...props.panel}
     />
     <FormField
       type="number"
+      mr={1}
       param={`${props.axis}Rotation`}
       method="panels.update"
       {...props.panel}
     />
-  </Box>
+  </Flex>
 );
 
 const PanelInspector = props => {
@@ -35,12 +37,6 @@ const PanelInspector = props => {
         method="panels.update"
         {...props.panel}
       />
-      <FormField
-        type="url"
-        param="src"
-        method="panels.update"
-        {...props.panel}
-      />
       <DimensionInput {...props.panel} />
       <Box mt={3}>
         <Flex mr={-1}>
@@ -51,6 +47,7 @@ const PanelInspector = props => {
               onClick={() => setSelectedAxis(axis)}
               mr={1}
               width={1}
+              sx={{ textTransform: "uppercase" }}
             >
               {axis}
             </Button>
