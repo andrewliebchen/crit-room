@@ -60,7 +60,7 @@ const PanelInspector = props => {
           <PositionFields axis={axes[1]} {...props} />
         )}
         {selectedAxis === axes[2] && (
-          <PositionFields axis={axes[0]} {...props} />
+          <PositionFields axis={axes[2]} {...props} />
         )}
       </Box>
       <Button
