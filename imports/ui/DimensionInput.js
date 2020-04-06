@@ -1,23 +1,12 @@
 import { Box, Flex, Button } from "rebass";
 import { Input, Label } from "@rebass/forms";
-import { Lock, Unlock, Maximize, Minimize } from "react-feather";
+import { Lock, Unlock, CornerRightDown } from "react-feather";
 import { Meteor } from "meteor/meteor";
 import { scale } from "proportional-scale";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
-//
-// if (props.type === "url") {
-//   let img = new Image();
-//   img.onload = function() {
-//     console.log(img.width);
-//     console.log(img.height);
-//   };
-//   img.src = event.target.value;
-// }
-
 const DimensionInput = props => {
-  const [scalarResize, setScalarResize] = useState(false);
   const [proportional, setProportional] = useState(false);
 
   return (
@@ -37,9 +26,25 @@ const DimensionInput = props => {
           <Button
             variant="icon"
             ml={1}
-            onClick={() => setScalarResize(!scalarResize)}
+            title="Apply image proportions"
+            onClick={() => {
+              let img = new Image();
+              img.onload = function() {
+                const { width, height } = scale({
+                  width: img.width,
+                  height: img.height,
+                  maxWidth: props.width
+                });
+                Meteor.call("panels.update", props._id, {
+                  width: width,
+                  height: height
+                });
+                setProportional(true);
+              };
+              img.src = props.src;
+            }}
           >
-            {scalarResize ? <Maximize /> : <Minimize />}
+            <CornerRightDown />
           </Button>
         </Flex>
       </Box>

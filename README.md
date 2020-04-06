@@ -37,13 +37,13 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Close/hide edit pane
 - ✅ Landing page style
 - ✅ Fix axis position selector
+- ✅ Set size of panel based on size of image
 - ⬜️ Scene environment params
 - ⬜️ Position presets for near/mid/far
 - ⬜️ Templates for Scenes (e.g. AUI)
 - ⬜️ Allow users to delete their accounts
 - ⬜️ Upload images
 - ⬜️ Curvature
-- ⬜️ Set size of panel based on size of image
 - ⬜️ Panel dimensions can either be scaled or number input
 - ⬜️ Don't allow drilldown if the element doesn't have children
 - ⬜️ 3D axis icons for button group

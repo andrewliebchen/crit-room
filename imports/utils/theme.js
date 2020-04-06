@@ -73,6 +73,10 @@ export default {
       outline: "none",
       borderColor: "primary",
       bg: "white"
+    },
+    "&:disabled": {
+      color: "secondaryText",
+      cursor: "disabled"
     }
   },
   select: {
