@@ -1,29 +1,48 @@
 import { Box, Flex, Button } from "rebass";
 import { Input, Label } from "@rebass/forms";
-import { Lock, Unlock } from "react-feather";
+import { Lock, Unlock, Maximize, Minimize } from "react-feather";
 import { Meteor } from "meteor/meteor";
 import { scale } from "proportional-scale";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import FormField from "./FormField";
-/*
-<Button
-  variant="icon"
-  ml={1}
-  width={30}
-  onClick={() => setScalarResize(!proportional)}
->
-  {scalarResize ? <Lock /> : <Unlock />}
-</Button>
-*/
+
+//
+// if (props.type === "url") {
+//   let img = new Image();
+//   img.onload = function() {
+//     console.log(img.width);
+//     console.log(img.height);
+//   };
+//   img.src = event.target.value;
+// }
+
 const DimensionInput = props => {
   const [scalarResize, setScalarResize] = useState(false);
   const [proportional, setProportional] = useState(false);
 
   return (
     <Box>
-      <FormField type="url" param="src" method="panels.update" {...props} />
-
+      <Box>
+        <Label>Image</Label>
+        <Flex>
+          <Input
+            type="url"
+            defaultValue={props.src}
+            onChange={event =>
+              Meteor.call("panels.update", props._id, {
+                src: event.target.value
+              })
+            }
+          />
+          <Button
+            variant="icon"
+            ml={1}
+            onClick={() => setScalarResize(!scalarResize)}
+          >
+            {scalarResize ? <Maximize /> : <Minimize />}
+          </Button>
+        </Flex>
+      </Box>
       <Flex>
         <Box>
           <Label>Width</Label>
@@ -87,7 +106,8 @@ const DimensionInput = props => {
 DimensionInput.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  _id: PropTypes.string
+  _id: PropTypes.string,
+  src: PropTypes.string
 };
 
 export default DimensionInput;
