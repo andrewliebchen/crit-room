@@ -6,7 +6,6 @@ import { Scenes } from "../api/scenes";
 import { Sidebar } from "react-feather";
 import { useQueryParams, BooleanParam, StringParam } from "use-query-params";
 import { withTracker } from "meteor/react-meteor-data";
-import Account from "./Account";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
 import Pane from "./Pane";
@@ -151,6 +150,7 @@ const Prototype = props => {
           <Header
             selectedType={selectedType}
             onSelect={event => console.log(event)}
+            user={props.user}
           />
           <Pane
             selectedType={selectedType}
@@ -183,7 +183,6 @@ const Prototype = props => {
               >
                 <Sidebar />
               </Button>
-              <Account {...props.user} />
             </Flex>
           </Card> */}
         </Box>

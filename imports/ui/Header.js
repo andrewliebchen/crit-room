@@ -3,6 +3,7 @@ import { Card, Heading, Button, Flex, Text } from "theme-ui";
 import { ArrowRight } from "react-feather";
 import PropTypes from "prop-types";
 import { elementTypes } from "../utils/types";
+import Account from "./Account";
 
 const Arrow = () => (
   <Flex sx={{ mx: 3, color: "secondaryText" }}>
@@ -30,6 +31,7 @@ const Header = props => (
           </Button>
         </Flex>
       ))}
+      <Account {...props.user} />
     </Flex>
   </Card>
 );
