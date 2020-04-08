@@ -15,6 +15,7 @@ import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React from "react";
 import SceneInspector from "./SceneInspector";
+import Header from "./Header";
 
 const Prototype = props => {
   const [query, setQuery] = useQueryParams({
@@ -165,6 +166,7 @@ const Prototype = props => {
             <Account {...props.user} />
           </Flex>
         </Card>
+        <Header />
       </Flex>
     );
   } else {

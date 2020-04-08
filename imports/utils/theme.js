@@ -30,14 +30,15 @@ export default {
   colors: {
     text: "rgba(0, 0, 0, 1)",
     secondaryText: "rgba(0, 0, 0, 0.5)",
-    negative: "rgba(255, 124, 124, 1)",
-    negativeBg: "rgba(255, 124, 124, 0.2)",
     background: "#fff",
+    muted: "rgba(0, 0, 0, 0.1)",
     primary: "rgba(49, 124, 242, 1)",
     primaryBg: "rgba(49, 124, 242, 0.2)",
-    primaryBgHover: "rgba(49, 124, 242, 0.4)",
-    secondary: "purple",
-    muted: "rgba(0, 0, 0, 0.1)"
+    primaryBgHover: "rgba(49, 124, 242, 0.3)",
+    negative: "rgba(255, 124, 124, 1)",
+    negativeBg: "rgba(255, 124, 124, 0.2)",
+    negativeBgHover: "rgba(255, 124, 124, 0.3)",
+    secondary: "purple"
   },
   shadows: {
     card: "0 2px 10px rgba(0, 0, 0, 0.2)"
@@ -67,7 +68,18 @@ export default {
     negative: {
       ...baseControlStyles,
       bg: "negativeBg",
-      color: "negative"
+      color: "negative",
+      "&:hover": {
+        bg: "negativeBgHover"
+      }
+    },
+    transparent: {
+      ...baseControlStyles,
+      bg: "transparent",
+      color: "primary",
+      "&:hover": {
+        bg: "primaryBg"
+      }
     }
   },
   link: {
