@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import { Button, Box, Flex, Heading, Link, Text, Card } from "theme-ui";
-import { Plus, Trash, ArrowLeft, Eye } from "react-feather";
-import PropTypes from "prop-types";
-import HotspotInspector from "./HotspotInspector";
-import SceneInspector from "./SceneInspector";
-import PanelInspector from "./PanelInspector";
 import { elementTypes } from "../utils/types";
+import { Plus, Trash, ArrowLeft, Eye } from "react-feather";
+import HotspotInspector from "./HotspotInspector";
+import PanelInspector from "./PanelInspector";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import SceneInspector from "./SceneInspector";
 
 const Pane = props => {
-  const [showInspector, setShowInspector] = useState(true);
-  const pluralizedType = `${props.selectedType}s`;
+  const [showInspector, setShowInspector] = useState(false);
+  const pluralizedType = `${props.query.selected}s`;
 
   return (
     <Card
@@ -37,17 +37,17 @@ const Pane = props => {
             </Button>
           </Flex>
 
-          {props.selectedType === elementTypes[0] && (
+          {props.query.selected === elementTypes[0] && (
             <SceneInspector {...props.scene} />
           )}
-          {props.selectedType === elementTypes[1] && <PanelInspector />}
-          {props.selectedType === elementTypes[2] && <HotspotInspector />}
+          {props.query.selected === elementTypes[1] && <PanelInspector />}
+          {props.query.selected === elementTypes[2] && <HotspotInspector />}
         </Box>
       ) : (
         <Box>
           {props[pluralizedType].length > 0 ? (
             props[pluralizedType].map(item => {
-              const isSelected = props.selectedItem === item._id;
+              const isSelected = props.query[props.query.selected] === item._id;
               return (
                 <Flex
                   key={item._id}
@@ -60,7 +60,7 @@ const Pane = props => {
                   }}
                   onClick={() => {
                     let newQuery = {};
-                    newQuery[props.selectedType] = item._id;
+                    newQuery[props.query.selected] = item._id;
                     props.setQuery(newQuery);
                     setShowInspector(true);
                   }}
@@ -70,10 +70,10 @@ const Pane = props => {
               );
             })
           ) : (
-            <Text color="secondaryText">No {props.selectedType} yet</Text>
+            <Text color="secondaryText">No {pluralizedType} yet</Text>
           )}
-          <Button onClick={() => console.log("TODO")} title="Add">
-            <Plus />
+          <Button onClick={() => console.log("TODO")}>
+            Add a {props.query.selected}
           </Button>
         </Box>
       )}
@@ -81,17 +81,12 @@ const Pane = props => {
   );
 };
 
-Pane.defaultProps = {
-  items: []
-};
-
 Pane.propTypes = {
-  items: PropTypes.array,
-  setQuery: PropTypes.func,
-  selectedItem: PropTypes.string,
-  scene: PropTypes.object,
+  hotspots: PropTypes.array,
   panels: PropTypes.array,
-  hotspots: PropTypes.array
+  query: PropTypes.object,
+  scene: PropTypes.object,
+  setQuery: PropTypes.func
 };
 
 export default Pane;

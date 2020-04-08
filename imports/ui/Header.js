@@ -24,7 +24,7 @@ const Header = props => (
         <Flex key={type} sx={{ alignItems: "center" }}>
           {i > 0 && <Arrow />}
           <Button
-            variant={props.selectedType === type ? "primary" : "transparent"}
+            variant={props.query.selected === type ? "primary" : "transparent"}
             onClick={() => props.setQuery({ selected: type })}
           >
             <Text variant="capitalize">{type}</Text>
@@ -39,7 +39,7 @@ const Header = props => (
 );
 
 Header.propTypes = {
-  selectedType: PropTypes.oneOf(elementTypes),
+  query: PropTypes.object,
   setQuery: PropTypes.func
 };
 

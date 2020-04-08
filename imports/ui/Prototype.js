@@ -62,14 +62,14 @@ const Prototype = props => {
             zIndex: 1
           }}
         >
-          <Header selectedType={query.selected} setQuery={setQuery} />
+          <Header query={query} setQuery={setQuery} />
           <Pane
-            selectedType={query.selected}
             scene={scene}
             scenes={props.scenes}
             panels={panels}
             hotspots={hotspots}
             setQuery={setQuery}
+            query={query}
           />
         </Box>
       </Flex>

@@ -123,6 +123,7 @@ export default {
   variants: {
     listItem: {
       ...baseControlStyles,
+      px: 2,
       mx: -2,
       "&:hover": {
         bg: "primaryBg",

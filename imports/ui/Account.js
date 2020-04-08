@@ -2,42 +2,22 @@ import React from "react";
 import { Image, Flex, Button } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { LogIn, LogOut, User } from "react-feather";
+import { LogIn, LogOut } from "react-feather";
+import { Avatar } from "theme-ui";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 
 const Account = props => (
-  <Flex>
-    <Link to="/profile">
-      <Button title="Profile" mr={1}>
-        <User />
-      </Button>
-    </Link>
-    {Object.keys(props).length !== 0 ? (
-      <Button
-        title="Log out"
-        onClick={() => Meteor.logout(() => window.location.replace("/login"))}
-      >
-        <LogOut />
-      </Button>
-    ) : (
-      <Button
-        title="Log in with Facebook"
-        onClick={() =>
-          Meteor.loginWithFacebook(
-            {
-              loginStyle: "popup"
-            },
-            () => {
-              window.location.replace("/");
-            }
-          )
-        }
-      >
-        <LogIn />
-      </Button>
+  <Link to="/profile" title="View profile">
+    {props.user && (
+      <Flex sx={{ alignItems: "center" }}>
+        <Avatar
+          src={props.user.services.facebook.picture.data.url}
+          sx={{ height: 24, width: 24 }}
+        />
+      </Flex>
     )}
-  </Flex>
+  </Link>
 );
 
 Account.propTypes = {
