@@ -42,6 +42,14 @@ export default {
   shadows: {
     card: "0 2px 10px rgba(0, 0, 0, 0.2)"
   },
+  cards: {
+    primary: {
+      p: 3,
+      bg: "background",
+      boxShadow: "card",
+      borderRadius: 3
+    }
+  },
   buttons: {
     primary: {
       ...baseControlStyles,
@@ -102,12 +110,6 @@ export default {
     }
   },
   variants: {
-    card: {
-      p: 3,
-      bg: "background",
-      boxShadow: "card",
-      borderRadius: 3
-    },
     listItem: {
       ...baseControlStyles,
       mx: -2,

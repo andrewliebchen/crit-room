@@ -1,10 +1,10 @@
 import React from "react";
-import { Box } from "theme-ui";
+import { Card } from "theme-ui";
 
 const Inspector = props => (
-  <Box variant="card" mx={-4} my={2} pt={2}>
+  <Card mx={-4} my={2} pt={2}>
     {props.children}
-  </Box>
+  </Card>
 );
 
 export default Inspector;

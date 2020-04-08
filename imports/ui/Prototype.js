@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Button } from "theme-ui";
+import { Flex, Box, Text, Button, Card } from "theme-ui";
 import { Hotspots } from "../api/hotspots";
 import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
@@ -134,8 +134,7 @@ const Prototype = props => {
             <Text color="secondaryText">Select a Scene to get Started</Text>
           </Flex>
         )}
-        <Box
-          variant="card"
+        <Card
           sx={{
             position: "fixed",
             zIndex: 1,
@@ -157,7 +156,6 @@ const Prototype = props => {
           )}
           <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
             <Button
-              
               title="Hide"
               mr={3}
               onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
@@ -166,7 +164,7 @@ const Prototype = props => {
             </Button>
             <Account {...props.user} />
           </Flex>
-        </Box>
+        </Card>
       </Flex>
     );
   } else {
