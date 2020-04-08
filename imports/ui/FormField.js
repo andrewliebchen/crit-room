@@ -1,6 +1,5 @@
 import React from "react";
-import { Flex, Box, Text } from "rebass";
-import { Input, Label } from "@rebass/forms";
+import { Flex, Box, Text, Input, Label } from "theme-ui";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 

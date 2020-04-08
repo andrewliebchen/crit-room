@@ -1,9 +1,8 @@
-import { Box, Button, Text, Heading, Flex } from "rebass";
+import { Box, Button, Text, Heading, Flex, Select, Label } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React from "react";
-import { Select, Label } from "@rebass/forms";
 import Inspector from "./Inspector";
 
 const HotspotInspector = props => (
@@ -64,7 +63,6 @@ const HotspotInspector = props => (
       />
     </Flex>
     <Button
-      width={1}
       mt={3}
       variant="secondary"
       color="negative"

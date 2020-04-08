@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Button } from "rebass";
+import { Flex, Box, Text, Button } from "theme-ui";
 import { Hotspots } from "../api/hotspots";
 import { Panels } from "../api/panels";
 import { Prototypes } from "../api/prototypes";
@@ -124,23 +124,26 @@ const Prototype = props => {
           />
         ) : (
           <Flex
-            sx={{ height: "100vh", width: "100vw" }}
-            justifyContent="center"
-            alignItems="center"
+            sx={{
+              height: "100vh",
+              width: "100vw",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
           >
             <Text color="secondaryText">Select a Scene to get Started</Text>
           </Flex>
         )}
         <Box
           variant="card"
-          width={query.hideSidebar || 300}
           sx={{
             position: "fixed",
             zIndex: 1,
             left: 4,
             top: 4,
             overflow: "visible",
-            userSelect: "none"
+            userSelect: "none",
+            width: query.hideSidebar || 300
           }}
         >
           {query.hideSidebar || (
@@ -152,7 +155,7 @@ const Prototype = props => {
                 : scenePane}
             </Box>
           )}
-          <Flex alignItems="center" justifyContent="space-between">
+          <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
             <Button
               variant="icon"
               title="Hide"

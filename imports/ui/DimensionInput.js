@@ -1,5 +1,4 @@
-import { Box, Flex, Button } from "rebass";
-import { Input, Label } from "@rebass/forms";
+import { Box, Flex, Button, Input, Label } from "theme-ui";
 import { Lock, Unlock, CornerRightDown } from "react-feather";
 import { Meteor } from "meteor/meteor";
 import { scale } from "proportional-scale";
@@ -71,9 +70,11 @@ const DimensionInput = props => {
         </Box>
         <Flex
           mx={1}
-          flexDirection="column"
-          justifyContent="flex-end"
-          width="auto"
+          sx={{
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            width: "auto"
+          }}
         >
           <Button
             variant="icon"

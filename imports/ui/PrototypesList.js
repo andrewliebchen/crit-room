@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Button, Heading } from "rebass";
+import { Flex, Text, Box, Button, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { Plus, ArrowRight } from "react-feather";
 import { Prototypes } from "../api/prototypes";
@@ -13,9 +13,12 @@ const PrototypesList = props => {
   const [selectedPrototype, setSelectedPrototype] = useState(null);
 
   return (
-    <Flex width={1} justifyContent="center" p={3}>
-      <Box width={700}>
-        <Flex alignItems="center" justifyContent="space-between" mb={3}>
+    <Flex p={3} sx={{ width: "100vw", justifyContent: "center" }}>
+      <Box sx={{ width: 700 }}>
+        <Flex
+          mb={3}
+          sx={{ alignItems: "center", justifyContent: "space-between" }}
+        >
           <Heading>Prototypes</Heading>
           <Flex>
             <Account {...props.user} />
@@ -35,8 +38,10 @@ const PrototypesList = props => {
             <Box key={prototype._id}>
               <Flex
                 variant="listItem"
-                alignItems="center"
-                justifyContent="space-between"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
                 onClick={() =>
                   setSelectedPrototype(selectedPrototype ? null : prototype._id)
                 }
@@ -69,7 +74,6 @@ const PrototypesList = props => {
                     {...prototype}
                   />
                   <Button
-                    width={1}
                     mt={3}
                     variant="secondary"
                     color="negative"

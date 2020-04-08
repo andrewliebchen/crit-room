@@ -1,12 +1,15 @@
 import React from "react";
-import { Button, Flex } from "rebass";
+import { Button, Flex } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 
 const Login = props => (
   <Flex
-    sx={{ width: "100vw", height: "100vh" }}
-    alignItems="center"
-    justifyContent="center"
+    sx={{
+      width: "100vw",
+      height: "100vh",
+      alignItems: "center",
+      justifyContent: "center"
+    }}
   >
     <Button
       onClick={() =>

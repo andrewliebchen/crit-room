@@ -1,8 +1,6 @@
 import { backgrounds } from "../utils/manifest";
-import { Box, Button } from "rebass";
-import { Label } from "@rebass/forms";
+import { Box, Button, Label, Select } from "theme-ui";
 import { Meteor } from "meteor/meteor";
-import { Select } from "@rebass/forms";
 import FormField from "./FormField";
 import Inspector from "./Inspector";
 import PropTypes from "prop-types";
@@ -34,7 +32,6 @@ const SceneInspector = props => (
       </Select>
     </Box>
     <Button
-      width={1}
       mt={3}
       variant="secondary"
       color="negative"

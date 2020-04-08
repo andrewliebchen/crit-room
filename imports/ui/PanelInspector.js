@@ -1,4 +1,4 @@
-import { Text, Heading, Button, Flex, Box } from "rebass";
+import { Text, Heading, Button, Flex, Box } from "theme-ui";
 import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
 import Inspector from "./Inspector";
@@ -46,7 +46,6 @@ const PanelInspector = props => {
               variant={axis === selectedAxis ? "primary" : "secondary"}
               onClick={() => setSelectedAxis(axis)}
               mr={1}
-              width={1}
               sx={{ textTransform: "uppercase" }}
             >
               {axis}
@@ -64,7 +63,6 @@ const PanelInspector = props => {
         )}
       </Box>
       <Button
-        width={1}
         mt={3}
         variant="secondary"
         color="negative"

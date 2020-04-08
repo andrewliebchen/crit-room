@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Flex, Button } from "rebass";
+import { Image, Flex, Button } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { LogIn, LogOut, User } from "react-feather";
