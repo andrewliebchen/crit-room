@@ -1,3 +1,13 @@
+const controlHeight = 36;
+const baseControlStyles = {
+  px: 2,
+  py: 0,
+  borderRadius: 2,
+  cursor: "pointer",
+  height: controlHeight,
+  display: "flex"
+};
+
 export default {
   fonts: {
     body:
@@ -15,44 +25,41 @@ export default {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.125
+    heading: 1.5
   },
   colors: {
-    text: "#000",
-    secondaryText: "#CCC",
-    negative: "red",
+    text: "rgba(0, 0, 0, 1)",
+    secondaryText: "rgba(0, 0, 0, 0.5)",
+    negative: "rgba(255, 124, 124, 1)",
+    negativeBg: "rgba(255, 124, 124, 0.2)",
     background: "#fff",
-    primary: "blue",
+    primary: "rgba(49, 124, 242, 1)",
+    primaryBg: "rgba(49, 124, 242, 0.2)",
+    primaryBgHover: "rgba(49, 124, 242, 0.4)",
     secondary: "purple",
-    muted: "rgba(0, 0, 0, 0.1)",
-    hover: "rgba(0, 0, 0, 0.05)"
+    muted: "rgba(0, 0, 0, 0.1)"
   },
   shadows: {
     card: "0 2px 10px rgba(0, 0, 0, 0.2)"
   },
   buttons: {
     primary: {
-      bg: "primary",
-      borderRadius: 2,
-      color: "white",
-      cursor: "pointer"
+      ...baseControlStyles,
+      bg: "primaryBg",
+      color: "primary",
+      "&:hover": {
+        bg: "primaryBgHover"
+      }
     },
     secondary: {
-      borderRadius: 2,
+      ...baseControlStyles,
       bg: "muted",
-      color: "text",
-      cursor: "pointer"
+      color: "text"
     },
-    icon: {
-      borderRadius: 2,
-      bg: "transparent",
-      color: "primary",
-      p: 1,
-      display: "flex",
-      cursor: "pointer",
-      "&:hover": {
-        bg: "muted"
-      }
+    negative: {
+      ...baseControlStyles,
+      bg: "negativeBg",
+      color: "negative"
     }
   },
   link: {
@@ -90,6 +97,11 @@ export default {
       bg: "white"
     }
   },
+  text: {
+    heading: {
+      fontSize: 2
+    }
+  },
   variants: {
     card: {
       p: 3,
@@ -103,7 +115,7 @@ export default {
       borderRadius: 2,
       cursor: "pointer",
       "&:hover": {
-        bg: "hover",
+        bg: "primaryBg",
         color: "primary"
       }
     }
@@ -112,83 +124,12 @@ export default {
     root: {
       fontFamily: "body",
       lineHeight: "body",
-      fontWeight: "body"
-    },
-    h1: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 5
-    },
-    h2: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 4
-    },
-    h3: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 3
-    },
-    h4: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 2
-    },
-    h5: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 1
-    },
-    h6: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 0
-    },
-    p: {
-      color: "text",
-      fontFamily: "body",
       fontWeight: "body",
-      lineHeight: "body"
+      fontSize: 2
     },
     a: {
       color: "primary",
       cursor: "pointer"
-    },
-    pre: {
-      fontFamily: "monospace",
-      overflowX: "auto",
-      code: {
-        color: "inherit"
-      }
-    },
-    code: {
-      fontFamily: "monospace",
-      fontSize: "inherit"
-    },
-    table: {
-      width: "100%",
-      borderCollapse: "separate",
-      borderSpacing: 0
-    },
-    th: {
-      textAlign: "left",
-      borderBottomStyle: "solid"
-    },
-    td: {
-      textAlign: "left",
-      borderBottomStyle: "solid"
     },
     img: {
       maxWidth: "100%"

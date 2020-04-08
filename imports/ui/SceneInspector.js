@@ -33,8 +33,7 @@ const SceneInspector = props => (
     </Box>
     <Button
       mt={3}
-      variant="secondary"
-      color="negative"
+      variant="negative"
       onClick={() => {
         if (window.confirm("Are you sure you want to delete this scene?")) {
           Meteor.call("scenes.delete", props.scene._id);

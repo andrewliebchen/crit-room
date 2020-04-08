@@ -23,7 +23,7 @@ const PrototypesList = props => {
           <Flex>
             <Account {...props.user} />
             <Button
-              variant="icon"
+              
               title="Create prototype"
               ml={3}
               onClick={() => Meteor.call("prototypes.create")}
@@ -55,7 +55,7 @@ const PrototypesList = props => {
                   </Text>
                 </Flex>
                 <Button
-                  variant="icon"
+                  
                   title="View prototype"
                   onClick={event => {
                     event.stopPropagation();

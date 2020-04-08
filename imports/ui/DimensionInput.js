@@ -23,7 +23,7 @@ const DimensionInput = props => {
             }
           />
           <Button
-            variant="icon"
+            
             ml={1}
             title="Apply image proportions"
             onClick={() => {
@@ -77,7 +77,7 @@ const DimensionInput = props => {
           }}
         >
           <Button
-            variant="icon"
+            
             onClick={() => setProportional(!proportional)}
             sx={{ height: 42 }}
           >

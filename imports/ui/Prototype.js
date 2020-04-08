@@ -157,7 +157,7 @@ const Prototype = props => {
           )}
           <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
             <Button
-              variant="icon"
+              
               title="Hide"
               mr={3}
               onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
