@@ -1,7 +1,6 @@
 import { Text, Heading, Button, Flex, Box } from "theme-ui";
 import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
-import Inspector from "./Inspector";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
@@ -30,7 +29,7 @@ const PanelInspector = props => {
   const [selectedAxis, setSelectedAxis] = useState(axes[0]);
 
   return (
-    <Inspector>
+    <Box>
       <FormField
         type="text"
         param="name"
@@ -62,7 +61,7 @@ const PanelInspector = props => {
           <PositionFields axis={axes[2]} {...props} />
         )}
       </Box>
-      <Button
+      {/* <Button
         mt={3}
         variant="secondary"
         color="negative"
@@ -73,8 +72,8 @@ const PanelInspector = props => {
         }}
       >
         Delete
-      </Button>
-    </Inspector>
+      </Button> */}
+    </Box>
   );
 };
 

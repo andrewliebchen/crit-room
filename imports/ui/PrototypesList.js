@@ -5,7 +5,6 @@ import { Prototypes } from "../api/prototypes";
 import { withTracker } from "meteor/react-meteor-data";
 import Account from "./Account";
 import FormField from "./FormField";
-import Inspector from "./Inspector";
 import React, { useState } from "react";
 import TimeAgo from "react-timeago";
 
@@ -23,7 +22,6 @@ const PrototypesList = props => {
           <Flex>
             <Account {...props.user} />
             <Button
-              
               title="Create prototype"
               ml={3}
               onClick={() => Meteor.call("prototypes.create")}
@@ -55,7 +53,6 @@ const PrototypesList = props => {
                   </Text>
                 </Flex>
                 <Button
-                  
                   title="View prototype"
                   onClick={event => {
                     event.stopPropagation();
@@ -66,7 +63,7 @@ const PrototypesList = props => {
                 </Button>
               </Flex>
               {selectedPrototype === prototype._id && (
-                <Inspector>
+                <Box>
                   <FormField
                     type="text"
                     param="name"
@@ -85,7 +82,7 @@ const PrototypesList = props => {
                   >
                     Delete
                   </Button>
-                </Inspector>
+                </Box>
               )}
             </Box>
           ))

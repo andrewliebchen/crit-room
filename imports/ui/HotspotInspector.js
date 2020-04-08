@@ -3,10 +3,9 @@ import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React from "react";
-import Inspector from "./Inspector";
 
 const HotspotInspector = props => (
-  <Inspector>
+  <Box>
     <FormField
       type="text"
       param="name"
@@ -62,7 +61,7 @@ const HotspotInspector = props => (
         {...props.hotspot}
       />
     </Flex>
-    <Button
+    {/* <Button
       mt={3}
       variant="secondary"
       color="negative"
@@ -73,8 +72,8 @@ const HotspotInspector = props => (
       }}
     >
       Delete
-    </Button>
-  </Inspector>
+    </Button> */}
+  </Box>
 );
 
 HotspotInspector.propTypes = {
