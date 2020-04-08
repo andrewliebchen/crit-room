@@ -62,11 +62,7 @@ const Prototype = props => {
             zIndex: 1
           }}
         >
-          <Header
-            selectedType={query.selected}
-            user={props.user}
-            setQuery={setQuery}
-          />
+          <Header selectedType={query.selected} setQuery={setQuery} />
           <Pane
             selectedType={query.selected}
             scene={scene}
@@ -87,8 +83,7 @@ Prototype.propTypes = {
   prototype: PropTypes.object,
   scenes: PropTypes.array,
   panels: PropTypes.array,
-  hotspots: PropTypes.array,
-  user: PropTypes.object
+  hotspots: PropTypes.array
 };
 
 export default withTracker(props => {
@@ -97,7 +92,6 @@ export default withTracker(props => {
     prototype: Prototypes.findOne(id),
     scenes: Scenes.find({ prototypeId: id }).fetch(),
     panels: Panels.find({ prototypeId: id }).fetch(),
-    hotspots: Hotspots.find({ prototypeId: id }).fetch(),
-    user: Meteor.users.findOne({ _id: Meteor.userId() })
+    hotspots: Hotspots.find({ prototypeId: id }).fetch()
   };
 })(Prototype);

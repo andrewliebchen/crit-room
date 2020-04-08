@@ -4,17 +4,17 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { LogIn, LogOut, User } from "react-feather";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
 
 const Account = props => (
   <Flex>
     <Link to="/profile">
-      <Button  title="Profile" mr={1}>
+      <Button title="Profile" mr={1}>
         <User />
       </Button>
     </Link>
     {Object.keys(props).length !== 0 ? (
       <Button
-        
         title="Log out"
         onClick={() => Meteor.logout(() => window.location.replace("/login"))}
       >
@@ -22,7 +22,6 @@ const Account = props => (
       </Button>
     ) : (
       <Button
-        
         title="Log in with Facebook"
         onClick={() =>
           Meteor.loginWithFacebook(
@@ -42,7 +41,11 @@ const Account = props => (
 );
 
 Account.propTypes = {
-  services: PropTypes.object
+  user: PropTypes.object
 };
 
-export default Account;
+export default withTracker(props => {
+  return {
+    user: Meteor.users.findOne({ _id: Meteor.userId() })
+  };
+})(Account);

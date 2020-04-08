@@ -32,7 +32,7 @@ const Header = props => (
         </Flex>
       ))}
       <Flex ml={3}>
-        <Account {...props.user} />
+        <Account />
       </Flex>
     </Flex>
   </Card>
