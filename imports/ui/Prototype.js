@@ -9,12 +9,9 @@ import { withTracker } from "meteor/react-meteor-data";
 import Account from "./Account";
 import Canvas from "./Canvas";
 import FormField from "./FormField";
-import HotspotInspector from "./HotspotInspector";
 import Pane from "./Pane";
-import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
 import React from "react";
-import SceneInspector from "./SceneInspector";
 import Header from "./Header";
 import { elementTypes } from "../utils/types";
 
@@ -40,84 +37,84 @@ const Prototype = props => {
         ? elementTypes[1]
         : elementTypes[0];
 
-    const scenePane = (
-      <Pane
-        title="Scenes"
-        inspector={<SceneInspector scene={scene} />}
-        items={props.scenes}
-        onDrillup={() => (window.location.href = "/")}
-        onDrilldown={() =>
-          setQuery({ panel: panels.length > 0 ? panels[0]._id : null })
-        }
-        onAdd={() =>
-          Meteor.call("scenes.create", props.prototype._id, (err, id) =>
-            setQuery({ scene: id })
-          )
-        }
-        onSelect={sceneId =>
-          setQuery({
-            scene: sceneId
-          })
-        }
-        selectedItem={query.scene}
-      />
-    );
-
-    const panelPane = (
-      <Pane
-        title="Panels"
-        inspector={
-          <PanelInspector
-            panel={panels.find(panel => panel._id === query.panel)}
-          />
-        }
-        items={panels}
-        onAdd={() =>
-          Meteor.call(
-            "panels.create",
-            props.prototype._id,
-            query.scene,
-            (err, id) => setQuery({ panel: id })
-          )
-        }
-        onDrillup={() => setQuery({ panel: null })}
-        onDrilldown={() =>
-          setQuery({ hotspot: hotspots.length > 0 ? hotspots[0]._id : null })
-        }
-        onSelect={id =>
-          setQuery({
-            panel: id
-          })
-        }
-        selectedItem={query.panel}
-      />
-    );
-
-    const hotspotPane = (
-      <Pane
-        title="Hotspots"
-        inspector={
-          <HotspotInspector
-            hotspot={props.hotspots.find(
-              hotspot => hotspot._id === query.hotspot
-            )}
-            scenes={props.scenes}
-          />
-        }
-        items={hotspots}
-        onAdd={() =>
-          Meteor.call(
-            "hotspots.create",
-            props.prototype._id,
-            query.panel,
-            (err, id) => setQuery({ hotspot: id })
-          )
-        }
-        onDrillup={() => setQuery({ hotspot: null })}
-        onSelect={id => setQuery({ hotspot: id })}
-        selectedItem={query.hotspot}
-      />
-    );
+    // const scenePane = (
+    //   <Pane
+    //     title="Scenes"
+    //     inspector={<SceneInspector scene={scene} />}
+    //     items={props.scenes}
+    //     onDrillup={() => (window.location.href = "/")}
+    //     onDrilldown={() =>
+    //       setQuery({ panel: panels.length > 0 ? panels[0]._id : null })
+    //     }
+    //     onAdd={() =>
+    //       Meteor.call("scenes.create", props.prototype._id, (err, id) =>
+    //         setQuery({ scene: id })
+    //       )
+    //     }
+    //     onSelect={sceneId =>
+    //       setQuery({
+    //         scene: sceneId
+    //       })
+    //     }
+    //     selectedItem={query.scene}
+    //   />
+    // );
+    //
+    // const panelPane = (
+    //   <Pane
+    //     title="Panels"
+    //     inspector={
+    //       <PanelInspector
+    //         panel={panels.find(panel => panel._id === query.panel)}
+    //       />
+    //     }
+    //     items={panels}
+    //     onAdd={() =>
+    //       Meteor.call(
+    //         "panels.create",
+    //         props.prototype._id,
+    //         query.scene,
+    //         (err, id) => setQuery({ panel: id })
+    //       )
+    //     }
+    //     onDrillup={() => setQuery({ panel: null })}
+    //     onDrilldown={() =>
+    //       setQuery({ hotspot: hotspots.length > 0 ? hotspots[0]._id : null })
+    //     }
+    //     onSelect={id =>
+    //       setQuery({
+    //         panel: id
+    //       })
+    //     }
+    //     selectedItem={query.panel}
+    //   />
+    // );
+    //
+    // const hotspotPane = (
+    //   <Pane
+    //     title="Hotspots"
+    //     inspector={
+    //       <HotspotInspector
+    //         hotspot={props.hotspots.find(
+    //           hotspot => hotspot._id === query.hotspot
+    //         )}
+    //         scenes={props.scenes}
+    //       />
+    //     }
+    //     items={hotspots}
+    //     onAdd={() =>
+    //       Meteor.call(
+    //         "hotspots.create",
+    //         props.prototype._id,
+    //         query.panel,
+    //         (err, id) => setQuery({ hotspot: id })
+    //       )
+    //     }
+    //     onDrillup={() => setQuery({ hotspot: null })}
+    //     onSelect={id => setQuery({ hotspot: id })}
+    //     selectedItem={query.hotspot}
+    //   />
+    // );
 
     return (
       <Flex>
@@ -155,7 +152,14 @@ const Prototype = props => {
             selectedType={selectedType}
             onSelect={event => console.log(event)}
           />
-          <Card
+          <Pane
+            selectedType={selectedType}
+            scene={scene}
+            scenes={props.scenes}
+            panels={panels}
+            hotspots={hotspots}
+          />
+          {/* <Card
             sx={{
               mt: 2,
               userSelect: "none",
@@ -181,7 +185,7 @@ const Prototype = props => {
               </Button>
               <Account {...props.user} />
             </Flex>
-          </Card>
+          </Card> */}
         </Box>
       </Flex>
     );

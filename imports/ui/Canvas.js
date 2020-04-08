@@ -74,7 +74,7 @@ const Canvas = props => (
 );
 
 Canvas.propTypes = {
-  panel: PropTypes.array,
+  panels: PropTypes.array,
   selectedPanelId: PropTypes.string,
   scene: PropTypes.object,
   hotspots: PropTypes.array,

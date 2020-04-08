@@ -117,9 +117,8 @@ export default {
     }
   },
   text: {
-    heading: {
-      fontSize: 2
-    }
+    heading: { fontSize: 2 },
+    capitalize: { textTransform: "capitalize" }
   },
   variants: {
     listItem: {

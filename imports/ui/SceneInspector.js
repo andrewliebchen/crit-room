@@ -2,24 +2,18 @@ import { backgrounds } from "../utils/manifest";
 import { Box, Button, Label, Select } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
-import Inspector from "./Inspector";
 import PropTypes from "prop-types";
 import React from "react";
 
 const SceneInspector = props => (
-  <Inspector>
-    <FormField
-      type="text"
-      param="name"
-      method="scenes.update"
-      {...props.scene}
-    />
-    <Box>
+  <Box>
+    <FormField type="text" param="name" method="scenes.update" {...props} />
+    <Box mt={2}>
       <Label>Background</Label>
       <Select
-        defaultValue={props.scene.background}
+        defaultValue={props.background}
         onChange={event =>
-          Meteor.call("scenes.update", props.scene._id, {
+          Meteor.call("scenes.update", props._id, {
             background: event.target.value
           })
         }
@@ -31,22 +25,23 @@ const SceneInspector = props => (
         ))}
       </Select>
     </Box>
-    <Button
+    {/* <Button
       mt={3}
       variant="negative"
       onClick={() => {
         if (window.confirm("Are you sure you want to delete this scene?")) {
-          Meteor.call("scenes.delete", props.scene._id);
+          Meteor.call("scenes.delete", props._id);
         }
       }}
     >
       Delete
-    </Button>
-  </Inspector>
+    </Button> */}
+  </Box>
 );
 
 SceneInspector.propTypes = {
-  scene: PropTypes.object
+  _id: PropTypes.string,
+  background: PropTypes.string
 };
 
 export default SceneInspector;

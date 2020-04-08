@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
 const FormField = props => (
-  <Box mr={props.mr}>
+  <Box mr={props.mr} mt={2}>
     <Label>{props.param}</Label>
     <Flex>
       <Input

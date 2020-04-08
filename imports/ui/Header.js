@@ -26,7 +26,7 @@ const Header = props => (
             variant={props.selectedType === type ? "primary" : "transparent"}
             onClick={props.onSelect.bind(null, type)}
           >
-            <Text sx={{ textTransform: "capitalize" }}>{type}</Text>
+            <Text variant="capitalize">{type}</Text>
           </Button>
         </Flex>
       ))}
