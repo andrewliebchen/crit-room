@@ -73,7 +73,7 @@ export default {
     fontWeight: "bold"
   },
   input: {
-    borderRadius: 2,
+    ...baseControlStyles,
     bg: "muted",
     borderColor: "transparent",
     "&:focus": {
@@ -87,10 +87,9 @@ export default {
     }
   },
   select: {
+    ...baseControlStyles,
     bg: "muted",
-    borderRadius: 2,
     borderColor: "transparent",
-    pointer: "cursor",
     "&:focus": {
       outline: "none",
       borderColor: "primary",
@@ -110,10 +109,8 @@ export default {
       borderRadius: 3
     },
     listItem: {
-      p: 2,
+      ...baseControlStyles,
       mx: -2,
-      borderRadius: 2,
-      cursor: "pointer",
       "&:hover": {
         bg: "primaryBg",
         color: "primary"
