@@ -19,7 +19,8 @@ const Prototype = props => {
     scene: StringParam,
     panel: StringParam,
     hotspot: StringParam,
-    hideSidebar: BooleanParam
+    hideSidebar: BooleanParam,
+    selected: StringParam
   });
 
   if (props.prototype) {
@@ -28,92 +29,6 @@ const Prototype = props => {
     const hotspots = props.hotspots.filter(
       hotspot => hotspot.panelId === query.panel
     );
-
-    const selectedType =
-      typeof query.hotspot !== "undefined"
-        ? elementTypes[2]
-        : typeof query.panel !== "undefined"
-        ? elementTypes[1]
-        : elementTypes[0];
-
-    // const scenePane = (
-    //   <Pane
-    //     title="Scenes"
-    //     inspector={<SceneInspector scene={scene} />}
-    //     items={props.scenes}
-    //     onDrillup={() => (window.location.href = "/")}
-    //     onDrilldown={() =>
-    //       setQuery({ panel: panels.length > 0 ? panels[0]._id : null })
-    //     }
-    //     onAdd={() =>
-    //       Meteor.call("scenes.create", props.prototype._id, (err, id) =>
-    //         setQuery({ scene: id })
-    //       )
-    //     }
-    //     onSelect={sceneId =>
-    //       setQuery({
-    //         scene: sceneId
-    //       })
-    //     }
-    //     selectedItem={query.scene}
-    //   />
-    // );
-    //
-    // const panelPane = (
-    //   <Pane
-    //     title="Panels"
-    //     inspector={
-    //       <PanelInspector
-    //         panel={panels.find(panel => panel._id === query.panel)}
-    //       />
-    //     }
-    //     items={panels}
-    //     onAdd={() =>
-    //       Meteor.call(
-    //         "panels.create",
-    //         props.prototype._id,
-    //         query.scene,
-    //         (err, id) => setQuery({ panel: id })
-    //       )
-    //     }
-    //     onDrillup={() => setQuery({ panel: null })}
-    //     onDrilldown={() =>
-    //       setQuery({ hotspot: hotspots.length > 0 ? hotspots[0]._id : null })
-    //     }
-    //     onSelect={id =>
-    //       setQuery({
-    //         panel: id
-    //       })
-    //     }
-    //     selectedItem={query.panel}
-    //   />
-    // );
-    //
-    // const hotspotPane = (
-    //   <Pane
-    //     title="Hotspots"
-    //     inspector={
-    //       <HotspotInspector
-    //         hotspot={props.hotspots.find(
-    //           hotspot => hotspot._id === query.hotspot
-    //         )}
-    //         scenes={props.scenes}
-    //       />
-    //     }
-    //     items={hotspots}
-    //     onAdd={() =>
-    //       Meteor.call(
-    //         "hotspots.create",
-    //         props.prototype._id,
-    //         query.panel,
-    //         (err, id) => setQuery({ hotspot: id })
-    //       )
-    //     }
-    //     onDrillup={() => setQuery({ hotspot: null })}
-    //     onSelect={id => setQuery({ hotspot: id })}
-    //     selectedItem={query.hotspot}
-    //   />
-    // );
 
     return (
       <Flex>
@@ -148,43 +63,18 @@ const Prototype = props => {
           }}
         >
           <Header
-            selectedType={selectedType}
-            onSelect={event => console.log(event)}
+            selectedType={query.selected}
             user={props.user}
+            setQuery={setQuery}
           />
           <Pane
-            selectedType={selectedType}
+            selectedType={query.selected}
             scene={scene}
             scenes={props.scenes}
             panels={panels}
             hotspots={hotspots}
+            setQuery={setQuery}
           />
-          {/* <Card
-            sx={{
-              mt: 2,
-              userSelect: "none",
-              width: query.hideSidebar || 300
-            }}
-          >
-            {query.hideSidebar || (
-              <Box mb={3}>
-                {selectedType === elementTypes[0] && scenePane}
-                {selectedType === elementTypes[1] && panelPane}
-                {selectedType === elementTypes[2] && hotspotPane}
-              </Box>
-            )}
-            <Flex
-              sx={{ alignItems: "center", justifyContent: "space-between" }}
-            >
-              <Button
-                title="Hide"
-                mr={3}
-                onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
-              >
-                <Sidebar />
-              </Button>
-            </Flex>
-          </Card> */}
         </Box>
       </Flex>
     );

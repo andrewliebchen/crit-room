@@ -1,1 +1,1 @@
-export const elementTypes = ["scenes", "panels", "hotspots"];
+export const elementTypes = ["scene", "panel", "hotspot"];

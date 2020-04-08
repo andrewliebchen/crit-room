@@ -6,7 +6,7 @@ import { elementTypes } from "../utils/types";
 import Account from "./Account";
 
 const Arrow = () => (
-  <Flex sx={{ mx: 3, color: "secondaryText" }}>
+  <Flex sx={{ mx: 2, color: "secondaryText" }}>
     <ArrowRight />
   </Flex>
 );
@@ -25,20 +25,22 @@ const Header = props => (
           {i > 0 && <Arrow />}
           <Button
             variant={props.selectedType === type ? "primary" : "transparent"}
-            onClick={props.onSelect.bind(null, type)}
+            onClick={() => props.setQuery({ selected: type })}
           >
             <Text variant="capitalize">{type}</Text>
           </Button>
         </Flex>
       ))}
-      <Account {...props.user} />
+      <Flex ml={3}>
+        <Account {...props.user} />
+      </Flex>
     </Flex>
   </Card>
 );
 
 Header.propTypes = {
   selectedType: PropTypes.oneOf(elementTypes),
-  onSelect: PropTypes.func
+  setQuery: PropTypes.func
 };
 
 export default Header;
