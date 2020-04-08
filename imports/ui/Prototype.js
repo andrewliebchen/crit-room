@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import SceneInspector from "./SceneInspector";
 import Header from "./Header";
+import { elementTypes } from "../utils/types";
 
 const Prototype = props => {
   const [query, setQuery] = useQueryParams({
@@ -31,6 +32,13 @@ const Prototype = props => {
     const hotspots = props.hotspots.filter(
       hotspot => hotspot.panelId === query.panel
     );
+
+    const selectedType =
+      typeof query.hotspot !== "undefined"
+        ? elementTypes[2]
+        : typeof query.panel !== "undefined"
+        ? elementTypes[1]
+        : elementTypes[0];
 
     const scenePane = (
       <Pane
@@ -135,38 +143,46 @@ const Prototype = props => {
             <Text color="secondaryText">Select a Scene to get Started</Text>
           </Flex>
         )}
-        <Card
+        <Box
           sx={{
             position: "fixed",
-            zIndex: 1,
-            left: 4,
-            top: 4,
-            overflow: "visible",
-            userSelect: "none",
-            width: query.hideSidebar || 300
+            top: 16,
+            left: 16,
+            zIndex: 1
           }}
         >
-          {query.hideSidebar || (
-            <Box mb={3}>
-              {typeof query.hotspot !== "undefined"
-                ? hotspotPane
-                : typeof query.panel !== "undefined"
-                ? panelPane
-                : scenePane}
-            </Box>
-          )}
-          <Flex sx={{ alignItems: "center", justifyContent: "space-between" }}>
-            <Button
-              title="Hide"
-              mr={3}
-              onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
+          <Header
+            selectedType={selectedType}
+            onSelect={event => console.log(event)}
+          />
+          <Card
+            sx={{
+              mt: 2,
+              userSelect: "none",
+              width: query.hideSidebar || 300
+            }}
+          >
+            {query.hideSidebar || (
+              <Box mb={3}>
+                {selectedType === elementTypes[0] && scenePane}
+                {selectedType === elementTypes[1] && panelPane}
+                {selectedType === elementTypes[2] && hotspotPane}
+              </Box>
+            )}
+            <Flex
+              sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
-              <Sidebar />
-            </Button>
-            <Account {...props.user} />
-          </Flex>
-        </Card>
-        <Header />
+              <Button
+                title="Hide"
+                mr={3}
+                onClick={() => setQuery({ hideSidebar: !query.hideSidebar })}
+              >
+                <Sidebar />
+              </Button>
+              <Account {...props.user} />
+            </Flex>
+          </Card>
+        </Box>
       </Flex>
     );
   } else {

@@ -1,6 +1,8 @@
 import React from "react";
-import { Card, Heading, Button, Flex } from "theme-ui";
+import { Card, Heading, Button, Flex, Text } from "theme-ui";
 import { ArrowRight } from "react-feather";
+import PropTypes from "prop-types";
+import { elementTypes } from "../utils/types";
 
 const Arrow = () => (
   <Flex sx={{ mx: 3, color: "secondaryText" }}>
@@ -11,23 +13,30 @@ const Arrow = () => (
 const Header = props => (
   <Card
     sx={{
-      position: "fixed",
-      top: 16,
-      left: 16,
       px: 3,
-      py: 2,
-      zIndex: 1
+      py: 2
     }}
   >
     <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
       <Heading mr={3}>DeeDeeDee</Heading>
-      <Button variant="transparent">Scenes</Button>
-      <Arrow />
-      <Button variant="transparent">Panels</Button>
-      <Arrow />
-      <Button variant="transparent">Hotspots</Button>
+      {elementTypes.map((type, i) => (
+        <Flex key={type} sx={{ alignItems: "center" }}>
+          {i > 0 && <Arrow />}
+          <Button
+            variant={props.selectedType === type ? "primary" : "transparent"}
+            onClick={props.onSelect.bind(null, type)}
+          >
+            <Text sx={{ textTransform: "capitalize" }}>{type}</Text>
+          </Button>
+        </Flex>
+      ))}
     </Flex>
   </Card>
 );
+
+Header.propTypes = {
+  selectedType: PropTypes.oneOf(elementTypes),
+  onSelect: PropTypes.func
+};
 
 export default Header;
