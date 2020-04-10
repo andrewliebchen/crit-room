@@ -14,6 +14,7 @@ import React from "react";
 import Header from "./Header";
 import { elementTypes } from "../utils/types";
 import Loading from "./Loading";
+import { Centered } from "./Helpers";
 
 const Prototype = props => {
   const [query, setQuery] = useQueryParams({
@@ -44,16 +45,9 @@ const Prototype = props => {
             }}
           />
         ) : (
-          <Flex
-            sx={{
-              height: "100vh",
-              width: "100vw",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
+          <Centered>
             <Text color="secondaryText">Select a Scene to get Started</Text>
-          </Flex>
+          </Centered>
         )}
         <Box
           sx={{

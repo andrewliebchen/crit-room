@@ -1,20 +1,14 @@
 import React from "react";
 import { Text, Flex } from "theme-ui";
+import { Centered } from "./Helpers";
 
 const Loading = props =>
   props.ready ? (
     <div>{props.children}</div>
   ) : (
-    <Flex
-      sx={{
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100vw",
-        height: "100vh"
-      }}
-    >
+    <Centered>
       <Text>Loading...</Text>
-    </Flex>
+    </Centered>
   );
 
 export default Loading;

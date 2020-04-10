@@ -2,16 +2,10 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import { Flex, Box, Button, Avatar, Text, Heading } from "theme-ui";
+import { Centered } from "./Helpers";
 
 const Profile = props => (
-  <Flex
-    sx={{
-      height: "100vh",
-      width: "100vw",
-      justifyContent: "center",
-      alignItems: "center"
-    }}
-  >
+  <Centered>
     <Box>
       <Heading mb={3}>Profile</Heading>
       {props.user && (
@@ -30,7 +24,7 @@ const Profile = props => (
         </Box>
       )}
     </Box>
-  </Flex>
+  </Centered>
 );
 
 export default withTracker(props => {
