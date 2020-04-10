@@ -56,7 +56,7 @@ const PrototypesList = props => {
                   title="View prototype"
                   onClick={event => {
                     event.stopPropagation();
-                    window.location.href = `/prototypes/${prototype._id}`;
+                    window.location.href = `/prototypes/${prototype._id}?selected=scene`;
                   }}
                 >
                   <ArrowRight />

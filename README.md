@@ -45,5 +45,6 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ Upload images
 - ⬜️ Curvature
 - ⬜️ Panel dimensions can either be scaled or number input
-- ⬜️ Don't allow drilldown if the element doesn't have children
 - ⬜️ 3D axis icons for button group
+- ⬜️ Guest accounts
+- ⬜️ Comments

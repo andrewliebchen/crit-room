@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Header from "./Header";
 import { elementTypes } from "../utils/types";
+import Loading from "./Loading";
 
 const Prototype = props => {
   const [query, setQuery] = useQueryParams({
@@ -23,14 +24,14 @@ const Prototype = props => {
     selected: StringParam
   });
 
-  if (props.prototype) {
-    const scene = props.scenes.find(scene => scene._id === query.scene);
-    const panels = props.panels.filter(panel => panel.sceneId === query.scene);
-    const hotspots = props.hotspots.filter(
-      hotspot => hotspot.panelId === query.panel
-    );
+  const scene = props.scenes.find(scene => scene._id === query.scene);
+  const panels = props.panels.filter(panel => panel.sceneId === query.scene);
+  const hotspots = props.hotspots.filter(
+    hotspot => hotspot.panelId === query.panel
+  );
 
-    return (
+  return (
+    <Loading ready={props.prototype}>
       <Flex>
         {typeof query.scene !== "undefined" ? (
           <Canvas
@@ -73,10 +74,8 @@ const Prototype = props => {
           />
         </Box>
       </Flex>
-    );
-  } else {
-    return <Text>Loading...</Text>;
-  }
+    </Loading>
+  );
 };
 
 Prototype.propTypes = {
