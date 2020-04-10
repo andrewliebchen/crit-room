@@ -75,7 +75,6 @@ const Canvas = props => (
 
 Canvas.propTypes = {
   panels: PropTypes.array,
-  selectedPanelId: PropTypes.string,
   scene: PropTypes.object,
   hotspots: PropTypes.array,
   onHotspotClick: PropTypes.func
