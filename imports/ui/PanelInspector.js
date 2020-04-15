@@ -3,22 +3,21 @@ import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-
-const axes = ["x", "y", "z"];
+import PrototypeContext from "./PrototypeContext";
 
 const PositionFields = props => (
-  <Flex mr={-1}>
+  <Flex>
     <FormField
       type="number"
       mr={1}
-      param={`${props.axis}Position`}
+      param={`${props.label}Position`}
       method="panels.update"
       {...props.panel}
     />
     <FormField
       type="number"
       mr={1}
-      param={`${props.axis}Rotation`}
+      param={`${props.label}Rotation`}
       method="panels.update"
       {...props.panel}
     />
@@ -26,54 +25,68 @@ const PositionFields = props => (
 );
 
 const PanelInspector = props => {
-  const [selectedAxis, setSelectedAxis] = useState(axes[0]);
+  const [selectedAxisIndex, setSelectedAxisIndex] = useState(0);
 
   return (
-    <Box>
-      <FormField
-        type="text"
-        param="name"
-        method="panels.update"
-        {...props.panel}
-      />
-      <DimensionInput {...props.panel} />
-      <Box mt={3}>
-        <Flex mr={-1}>
-          {axes.map(axis => (
-            <Button
-              key={axis}
-              variant={axis === selectedAxis ? "primary" : "secondary"}
-              onClick={() => setSelectedAxis(axis)}
-              mr={1}
-              sx={{ textTransform: "uppercase" }}
-            >
-              {axis}
-            </Button>
-          ))}
-        </Flex>
-        {selectedAxis === axes[0] && (
-          <PositionFields axis={axes[0]} {...props} />
-        )}
-        {selectedAxis === axes[1] && (
-          <PositionFields axis={axes[1]} {...props} />
-        )}
-        {selectedAxis === axes[2] && (
-          <PositionFields axis={axes[2]} {...props} />
-        )}
-      </Box>
-      {/* <Button
+    <PrototypeContext.Consumer>
+      {props => {
+        const panel = props.panels.find(
+          panel => panel._id === props.query.panel
+        );
+        const axes = ["x", "y", "z"];
+        const axisLabel = axes[selectedAxisIndex];
+
+        return (
+          <Box>
+            <FormField
+              type="text"
+              param="name"
+              method="panels.update"
+              {...panel}
+            />
+            <DimensionInput {...panel} />
+            <Flex mt={3}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  const newIndex =
+                    selectedAxisIndex < axes.length - 1
+                      ? selectedAxisIndex + 1
+                      : 0;
+                  setSelectedAxisIndex(newIndex);
+                }}
+                mr={1}
+                sx={{ textTransform: "uppercase" }}
+              >
+                {axisLabel}
+              </Button>
+
+              {selectedAxisIndex === 0 && (
+                <PositionFields label={axisLabel} panel={panel} />
+              )}
+              {selectedAxisIndex === 1 && (
+                <PositionFields label={axisLabel} panel={panel} />
+              )}
+              {selectedAxisIndex === 2 && (
+                <PositionFields label={axisLabel} panel={panel} />
+              )}
+            </Flex>
+            {/* <Button
         mt={3}
         variant="secondary"
         color="negative"
         onClick={() => {
           if (window.confirm("Are you sure you want to delete this panel?")) {
-            Meteor.call("panels.delete", props.panel._id);
+            Meteor.call("panels.delete", panel._id);
           }
         }}
       >
         Delete
       </Button> */}
-    </Box>
+          </Box>
+        );
+      }}
+    </PrototypeContext.Consumer>
   );
 };
 
