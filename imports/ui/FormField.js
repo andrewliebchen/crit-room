@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Input, Label } from "theme-ui";
+import { Box, Flex, Input, Label } from "theme-ui";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 

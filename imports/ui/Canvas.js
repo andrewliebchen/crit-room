@@ -9,7 +9,7 @@ import Loading from "./Loading";
 const Canvas = () => (
   <PrototypeContext.Consumer>
     {props => (
-      <Loading ready={typeof props.query.scene !== "undefined"}>
+      <Loading ready={props.query.selected}>
         <Scene vrModeUi={{ enabled: true }}>
           {props.scene && props.scene.background !== "none" && (
             <Entity

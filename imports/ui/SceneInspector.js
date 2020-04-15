@@ -1,6 +1,7 @@
 import { backgrounds } from "../utils/manifest";
 import { Box, Button, Label, Select } from "theme-ui";
 import { Meteor } from "meteor/meteor";
+import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React from "react";
 

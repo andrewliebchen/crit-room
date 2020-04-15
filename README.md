@@ -38,6 +38,8 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ✅ Landing page style
 - ✅ Fix axis position selector
 - ✅ Set size of panel based on size of image
+- ✅ Use React Context API
+- ⬜️ Better panel inspector design
 - ⬜️ Scene environment params
 - ⬜️ Position presets for near/mid/far
 - ⬜️ Templates for Scenes (e.g. AUI)
