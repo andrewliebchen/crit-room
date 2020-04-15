@@ -1,8 +1,8 @@
-import React from "react";
+import { Centered } from "./Helpers";
+import { Flex, Box, Button, Avatar, Text, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
-import { Flex, Box, Button, Avatar, Text, Heading } from "theme-ui";
-import { Centered } from "./Helpers";
+import React from "react";
 
 const Profile = props => (
   <Centered>

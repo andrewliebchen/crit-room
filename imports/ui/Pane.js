@@ -1,12 +1,12 @@
-import { Button, Box, Flex, Heading, Link, Text, Card } from "theme-ui";
+import { Button, Box, Flex, Text, Card } from "theme-ui";
 import { elementTypes } from "../utils/types";
-import { Plus, Trash, ArrowLeft, Eye } from "react-feather";
+import { Trash, ArrowLeft, Eye } from "react-feather";
 import HotspotInspector from "./HotspotInspector";
 import PanelInspector from "./PanelInspector";
 import PropTypes from "prop-types";
+import PrototypeContext from "./PrototypeContext";
 import React, { useState } from "react";
 import SceneInspector from "./SceneInspector";
-import PrototypeContext from "./PrototypeContext";
 
 const Pane = () => {
   const [showInspector, setShowInspector] = useState(false);
@@ -15,7 +15,6 @@ const Pane = () => {
     <PrototypeContext.Consumer>
       {props => {
         const pluralizedType = `${props.query.selected}s`;
-        console.log(props);
 
         return (
           <Card

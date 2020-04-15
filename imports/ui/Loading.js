@@ -1,6 +1,6 @@
-import React from "react";
-import { Text, Flex } from "theme-ui";
 import { Centered } from "./Helpers";
+import { Text, Flex } from "theme-ui";
+import React from "react";
 
 const Loading = props =>
   props.ready ? (

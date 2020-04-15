@@ -1,4 +1,4 @@
-import { Box, Button, Text, Heading, Flex, Select, Label } from "theme-ui";
+import { Button, Flex, Select, Label } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import FormField from "./FormField";
 import PropTypes from "prop-types";

@@ -1,4 +1,4 @@
-import { Text, Heading, Button, Flex, Box } from "theme-ui";
+import { Button, Flex, Box } from "theme-ui";
 import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
