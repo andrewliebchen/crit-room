@@ -1,7 +1,8 @@
-import { Box, Flex, Button, Input, Label } from "theme-ui";
+import { Box, Flex, Button, Input, Label, Text } from "theme-ui";
 import { Lock, Unlock, CornerRightDown } from "react-feather";
 import { Meteor } from "meteor/meteor";
 import { scale } from "proportional-scale";
+import InlineLabelInput from "./InlineLabelInput";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
@@ -23,7 +24,6 @@ const DimensionInput = props => {
             }
           />
           <Button
-            
             ml={1}
             title="Apply image proportions"
             onClick={() => {
@@ -47,13 +47,14 @@ const DimensionInput = props => {
           </Button>
         </Flex>
       </Box>
-      <Flex>
-        <Box>
-          <Label>Width</Label>
-          <Flex>
+      <Box>
+        <Label>Dimensions</Label>
+        <Flex>
+          <InlineLabelInput label="W">
             <Input
               type="number"
               value={props.width}
+              pl={4}
               onChange={event => {
                 const { width, height } = scale({
                   width: props.width,
@@ -66,30 +67,15 @@ const DimensionInput = props => {
                 });
               }}
             />
-          </Flex>
-        </Box>
-        <Flex
-          mx={1}
-          sx={{
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            width: "auto"
-          }}
-        >
-          <Button
-            
-            onClick={() => setProportional(!proportional)}
-            sx={{ height: 42 }}
-          >
+          </InlineLabelInput>
+          <Button mx={1} onClick={() => setProportional(!proportional)}>
             {proportional ? <Lock /> : <Unlock />}
           </Button>
-        </Flex>
-        <Box>
-          <Label>Height</Label>
-          <Flex>
+          <InlineLabelInput label="H">
             <Input
               type="number"
               value={props.height}
+              pl={4}
               onChange={event => {
                 const { width, height } = scale({
                   width: props.width,
@@ -102,9 +88,9 @@ const DimensionInput = props => {
                 });
               }}
             />
-          </Flex>
-        </Box>
-      </Flex>
+          </InlineLabelInput>
+        </Flex>
+      </Box>
     </Box>
   );
 };

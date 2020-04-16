@@ -50,3 +50,4 @@ Invision for prototyping immersive environments. Quickly add and sync images, ap
 - ⬜️ 3D axis icons for button group
 - ⬜️ Guest accounts
 - ⬜️ Comments
+- ⬜️ Fix the broken stuff on the Inspectors

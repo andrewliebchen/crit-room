@@ -1,26 +1,37 @@
-import { Button, Flex, Box } from "theme-ui";
+import { Button, Flex, Box, Label, Input } from "theme-ui";
 import DimensionInput from "./DimensionInput";
 import FormField from "./FormField";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import PrototypeContext from "./PrototypeContext";
+import InlineLabelInput from "./InlineLabelInput";
 
 const PositionFields = props => (
   <Flex>
-    <FormField
-      type="number"
-      mr={1}
-      param={`${props.label}Position`}
-      method="panels.update"
-      {...props}
-    />
-    <FormField
-      type="number"
-      mr={1}
-      param={`${props.label}Rotation`}
-      method="panels.update"
-      {...props}
-    />
+    <InlineLabelInput label="P">
+      <Input
+        type="number"
+        value={props[`${props.axisLabel}Position`]}
+        pl={4}
+        onChange={event => {
+          let args = {};
+          args[`${props.axisLabel}Position`] = event.target.value;
+          Meteor.call("panels.update", props._id, args);
+        }}
+      />
+    </InlineLabelInput>
+    <InlineLabelInput label="P">
+      <Input
+        type="number"
+        value={props[`${props.axisLabel}Rotation`]}
+        pl={4}
+        onChange={event => {
+          let args = {};
+          args[`${props.label}Rotation`] = event.target.value;
+          Meteor.call("panels.update", props._id, args);
+        }}
+      />
+    </InlineLabelInput>
   </Flex>
 );
 
@@ -42,31 +53,43 @@ const PanelInspector = props => {
               {...props.selectedPanel}
             />
             <DimensionInput {...props.selectedPanel} />
-            <Flex mt={3}>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  const newIndex =
-                    selectedAxisIndex < axes.length - 1
-                      ? selectedAxisIndex + 1
-                      : 0;
-                  setSelectedAxisIndex(newIndex);
-                }}
-                mr={1}
-                sx={{ textTransform: "uppercase" }}
-              >
-                {axisLabel}
-              </Button>
-              {selectedAxisIndex === 0 && (
-                <PositionFields label={axisLabel} {...props.selectedPanel} />
-              )}
-              {selectedAxisIndex === 1 && (
-                <PositionFields label={axisLabel} {...props.selectedPanel} />
-              )}
-              {selectedAxisIndex === 2 && (
-                <PositionFields label={axisLabel} {...props.selectedPanel} />
-              )}
-            </Flex>
+            <Box>
+              <Label>Position</Label>
+              <Flex>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    const newIndex =
+                      selectedAxisIndex < axes.length - 1
+                        ? selectedAxisIndex + 1
+                        : 0;
+                    setSelectedAxisIndex(newIndex);
+                  }}
+                  mr={1}
+                  sx={{ textTransform: "uppercase" }}
+                >
+                  {axisLabel}
+                </Button>
+                {selectedAxisIndex === 0 && (
+                  <PositionFields
+                    axisLabel={axisLabel}
+                    {...props.selectedPanel}
+                  />
+                )}
+                {selectedAxisIndex === 1 && (
+                  <PositionFields
+                    axisLabel={axisLabel}
+                    {...props.selectedPanel}
+                  />
+                )}
+                {selectedAxisIndex === 2 && (
+                  <PositionFields
+                    axisLabel={axisLabel}
+                    {...props.selectedPanel}
+                  />
+                )}
+              </Flex>
+            </Box>
             {/* <Button
         mt={3}
         variant="secondary"

@@ -1,10 +1,11 @@
-const controlHeight = 36;
+export const controlHeight = 36;
 const baseControlStyles = {
   px: 2,
   py: 0,
   borderRadius: 2,
   cursor: "pointer",
   height: controlHeight,
+  minWidth: controlHeight,
   display: "flex"
 };
 
@@ -92,18 +93,20 @@ export default {
     fontSize: 1,
     fontWeight: "bold"
   },
-  input: {
-    ...baseControlStyles,
-    bg: "muted",
-    borderColor: "transparent",
-    "&:focus": {
-      outline: "none",
-      borderColor: "primary",
-      bg: "white"
-    },
-    "&:disabled": {
-      color: "secondaryText",
-      cursor: "disabled"
+  forms: {
+    input: {
+      ...baseControlStyles,
+      bg: "muted",
+      borderColor: "transparent",
+      "&:focus": {
+        outline: "none",
+        borderColor: "primary",
+        bg: "white"
+      },
+      "&:disabled": {
+        color: "secondaryText",
+        cursor: "disabled"
+      }
     }
   },
   select: {
