@@ -11,10 +11,10 @@ const Canvas = () => (
     {props => (
       <Loading ready={props.query.selected}>
         <Scene vrModeUi={{ enabled: true }}>
-          {props.scene && props.scene.background !== "none" && (
+          {props.selectedScene && props.selectedScene.background !== "none" && (
             <Entity
               primitive="a-sky"
-              src={backgrounds[props.scene.background].src}
+              src={backgrounds[props.selectedScene.background].src}
             />
           )}
           {props.panels.length > 0 &&
@@ -49,7 +49,7 @@ const Canvas = () => (
                       key={hotspot._id}
                       events={{
                         click: props.setQuery({
-                          scene: props.scene._id,
+                          scene: props.selectedScene._id,
                           panel: null,
                           hotspot: hotspot.link
                         })
@@ -90,7 +90,7 @@ const Canvas = () => (
 
 Canvas.propTypes = {
   panels: PropTypes.array,
-  scene: PropTypes.object,
+  selectedScene: PropTypes.object,
   hotspots: PropTypes.array,
   onHotspotClick: PropTypes.func
 };

@@ -22,10 +22,14 @@ const PrototypeProvider = props => {
         ...props,
         query: query,
         setQuery: setQuery,
-        scene: props.scenes.find(scene => scene._id === query.scene),
+        selectedScene: props.scenes.find(scene => scene._id === query.scene),
         panels: props.panels.filter(panel => panel.sceneId === query.scene),
+        selectedPanel: props.panels.find(panel => panel._id === query.panel),
         hotspots: props.hotspots.filter(
           hotspot => hotspot.panelId === query.panel
+        ),
+        selectedHotspot: props.hotspots.find(
+          hotspot => hotspot._id === query.hotspot
         )
       }}
     >

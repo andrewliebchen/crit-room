@@ -12,14 +12,14 @@ const PositionFields = props => (
       mr={1}
       param={`${props.label}Position`}
       method="panels.update"
-      {...props.panel}
+      {...props}
     />
     <FormField
       type="number"
       mr={1}
       param={`${props.label}Rotation`}
       method="panels.update"
-      {...props.panel}
+      {...props}
     />
   </Flex>
 );
@@ -30,9 +30,6 @@ const PanelInspector = props => {
   return (
     <PrototypeContext.Consumer>
       {props => {
-        const panel = props.panels.find(
-          panel => panel._id === props.query.panel
-        );
         const axes = ["x", "y", "z"];
         const axisLabel = axes[selectedAxisIndex];
 
@@ -42,9 +39,9 @@ const PanelInspector = props => {
               type="text"
               param="name"
               method="panels.update"
-              {...panel}
+              {...props.selectedPanel}
             />
-            <DimensionInput {...panel} />
+            <DimensionInput {...props.selectedPanel} />
             <Flex mt={3}>
               <Button
                 variant="primary"
@@ -60,15 +57,14 @@ const PanelInspector = props => {
               >
                 {axisLabel}
               </Button>
-
               {selectedAxisIndex === 0 && (
-                <PositionFields label={axisLabel} panel={panel} />
+                <PositionFields label={axisLabel} {...props.selectedPanel} />
               )}
               {selectedAxisIndex === 1 && (
-                <PositionFields label={axisLabel} panel={panel} />
+                <PositionFields label={axisLabel} {...props.selectedPanel} />
               )}
               {selectedAxisIndex === 2 && (
-                <PositionFields label={axisLabel} panel={panel} />
+                <PositionFields label={axisLabel} {...props.selectedPanel} />
               )}
             </Flex>
             {/* <Button
@@ -91,7 +87,7 @@ const PanelInspector = props => {
 };
 
 PanelInspector.propTypes = {
-  panel: PropTypes.object
+  selectedPanel: PropTypes.object
 };
 
 export default PanelInspector;
