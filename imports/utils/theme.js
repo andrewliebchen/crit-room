@@ -1,12 +1,13 @@
 export const controlHeight = 36;
 const baseControlStyles = {
-  px: 2,
-  py: 0,
   borderRadius: 2,
   cursor: "pointer",
+  display: "flex",
   height: controlHeight,
+  alignItems: "center",
   minWidth: controlHeight,
-  display: "flex"
+  px: 2,
+  py: 0
 };
 
 export default {
