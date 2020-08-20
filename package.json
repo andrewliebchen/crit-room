@@ -10,7 +10,7 @@
     "add": "^2.0.6",
     "aframe": "^1.0.3",
     "aframe-react": "^4.4.0",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "jquery": "^3.4.1",
     "meteor-node-stubs": "^1.0.0",
     "prop-types": "^15.7.2",
